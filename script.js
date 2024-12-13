@@ -1173,7 +1173,7 @@ function EnviarSignificado(event) {
     console.log(data);
 
     // Feito pelo Rui, o namorado da Bea Gonçalves amen
-    fetch("https://diciomeunario.onrender.com/data", {
+    fetch("https://diciomeunario-api.onrender.com/data", {
       method: "POST", // Specify the request method
       mode: "no-cors",
       headers: {
@@ -1196,7 +1196,7 @@ function MostrarHistorico() {
   // let historicoReversed;
 
   // Fazer a requisição ao backend via proxy
-  fetch("https://diciomeunario.onrender.com/data")
+  fetch("https://diciomeunario-api.onrender.com/data")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erro na requisição: " + response.statusText); // Lida com erros de status
@@ -1245,7 +1245,7 @@ function MostrarHistorico() {
 
 // ========== APENAS PARA LIMPEZA DO SERVIDOR ==========
 // function LimparServidor() {
-//   fetch("https://diciomeunario.onrender.com/data", {
+//   fetch("https://diciomeunario-api.onrender.com/data", {
 //     method: "DELETE", // Usando DELETE para excluir dados no servidor
 //     mode: "no-cors", // Isso pode ser necessário se o servidor não tiver CORS configurado
 //     headers: {
