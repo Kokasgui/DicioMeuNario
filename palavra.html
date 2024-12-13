@@ -1,0 +1,32 @@
+<!-- @ DICIO MEU NÁRIO — Beatriz Loureiro, Guilherme Costa, Lucas Palhares, João Barbosa, Sofia Laranjo — FBAUP, Projeto 4.3, 2024-->
+
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dicio Meu Nário | Palavra</title>
+  <link rel="stylesheet" href="style_final.css" />
+</head>
+
+<body>
+  <header></header>
+  <main>
+    <h1 id="palavra"></h1>
+    <p id="silabas"></p>
+    <img id="imagem" src="" alt="">
+    <form action="arquivo.html">
+      <label for="significado">Significado</label>
+      <textarea name="significado" id="significado" required="true" rows="4" minlength="10" maxlength="200"
+        spellcheck="false" autofocus placeholder="Escreve aqui o significado..."></textarea>
+      <button type="submit" id="submit">
+        <img src="button-arrow.svg" onclick="EnviarSignificado()"></img>
+      </button>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

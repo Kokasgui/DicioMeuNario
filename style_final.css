@@ -1,0 +1,438 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+  user-select: none;
+  color-scheme: dark;
+}
+
+html {
+  position: relative;
+  display: block;
+  margin: 0;
+  background-color: black;
+  font-family: "DunbarText Regular", Arial, Helvetica, sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  padding-bottom: 1px;
+}
+
+h1 {
+  pointer-events: none;
+  position: fixed;
+  display: inline-block;
+  font-family: "DunbarTall ExBold", Arial, Helvetica, sans-serif;
+  font-size: 36px;
+  text-align: center;
+  top: 0;
+  left: 10px;
+  right: 10px;
+  margin: 100px 0 20px 0;
+  z-index: 3;
+}
+
+p.subtitle {
+  position: absolute;
+  text-align: center;
+  top: 200px;
+  left: 0;
+  right: 0;
+}
+
+span.underline {
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-underline-offset: 4px;
+}
+
+section#info-text {
+  display: block;
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+section#info-text section:first-of-type {
+  position: absolute;
+  width: 100%;
+  top: 40%;
+  line-height: 1.75em;
+  font-size: 1.5em;
+}
+
+section#info-text section:nth-of-type(2) {
+  position: absolute;
+  margin: 0 auto;
+  bottom: 100px;
+  left: 50%;
+  translate: -50% 0;
+  width: 70%;
+  line-height: 1.75em;
+  font-size: 1em;
+}
+
+p.footer {
+  margin-top: 10px;
+}
+
+/* Botão */
+.button-text {
+  position: fixed;
+  display: inline-block;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 0;
+  width: auto;
+  background-color: black;
+  font-family: "DunbarText Regular";
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  padding: 10px 15px;
+  border: 1px solid white;
+  border-radius: 50px;
+  margin-bottom: 100px;
+  z-index: 3;
+  transition-duration: 0.25s;
+  transition-property: background-color, color;
+}
+
+.button-text:hover {
+  color: black;
+  background-color: white;
+  transition-duration: 0.25s;
+  transition-property: background-color, color;
+}
+
+button {
+  border: none;
+  position: fixed;
+  cursor: pointer;
+  display: block;
+  position: fixed;
+  right: calc(20% - 30px);
+  width: 30px;
+  height: 30px;
+  border: 1px solid white;
+  filter: invert(0);
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition-duration: 0.2s;
+  transition-property: background-color, border-color, filter;
+  z-index: 3;
+}
+
+button#submit {
+  position: fixed;
+  display: block;
+  bottom: 100px;
+}
+
+button#info {
+  position: fixed;
+  display: block;
+  top: 25px;
+}
+
+button:hover {
+  filter: invert(1);
+  border: 1px solid black;
+  background-color: black;
+  transition-duration: 0.2s;
+  transition-property: background-color, border-color, filter;
+}
+
+h1#palavra {
+  font-size: 56px;
+}
+
+img#imagem {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #333333;
+  z-index: -1;
+}
+
+p#silabas {
+  position: fixed;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: "DunbarText Bold", sans-serif;
+  top: 180px;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+
+/* Sombra nas margens do site (para a imagem) */
+body::after {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: none;
+  box-shadow: inset 0 0 50px 25px black;
+  z-index: -1;
+}
+
+label {
+  position: fixed;
+  display: block;
+  bottom: 175px;
+  left: 50%;
+  translate: -50% 0;
+  width: 60%;
+  max-width: 630px;
+  height: 40px;
+  padding: 5px;
+  background-color: white;
+  color: black;
+  font-family: "DunbarText Bold";
+  text-transform: lowercase;
+  text-align: center;
+  font-size: 1.25rem;
+  border-radius: 5px 5px 0 0;
+}
+
+textarea {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  resize: none;
+  color: white;
+  border: 1px solid white;
+  margin-bottom: 100px;
+  width: 60%;
+  height: 75px;
+  max-width: 630px;
+  font-size: 0.85em;
+  font-family: "DunbarText Regular";
+  padding: 10px;
+  outline: none;
+  border-radius: 0 0 5px 5px;
+}
+
+/* textarea:invalid {
+  border: 1px dashed black;
+} */
+
+/* Para o histórico!! */
+div#container {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 200px;
+  margin-bottom: 160px;
+  gap: 30px 50px;
+  color: black;
+  flex-grow: 1;
+  z-index: 2;
+}
+
+div#container::before {
+  pointer-events: none;
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 200px;
+  left: 0;
+  top: 0;
+  content: "";
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0.8) 60%,
+    rgba(0, 0, 0, 0.5) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
+}
+
+div#container::after {
+  pointer-events: none;
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 150px;
+  left: 0;
+  bottom: 0;
+  content: "";
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0.8) 60%,
+    rgba(0, 0, 0, 0.5) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+div#container div {
+  width: 100%; /* Faz cada item ocupar 25% da largura do container menos o gap */
+  max-width: 260px; /* Limita a largura máxima dos itens */
+  height: 190px;
+  background-color: white;
+  position: relative;
+  display: block;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+div#container div h3 {
+  position: relative;
+  display: inline-block;
+  text-transform: lowercase;
+  text-align: center;
+  width: 100%;
+  padding: 5px;
+  background-color: white;
+  color: black;
+  height: 40px;
+  border-radius: 5px 5px 0 0;
+}
+
+div#container div img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: calc(100% - 40px);
+  object-fit: cover;
+  border-radius: 0 0 5px 5px;
+}
+
+div#container div p {
+  position: absolute;
+  display: block;
+  word-wrap: break-word;
+  opacity: 0;
+  color: white;
+  bottom: 0;
+  font-family: "DunbarText Regular", sans-serif;
+  font-size: 0.85em;
+  width: 100%;
+  height: calc(100% - 40px);
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  text-align: start;
+  transition: 0.25s opacity;
+  border-radius: 0 0 5px 5px;
+}
+
+div#container div:hover p {
+  position: absolute;
+  display: block;
+  opacity: 100%;
+  transition: 0.25s opacity;
+}
+
+/* Tudo sobre a scrollbar */
+/* Tamanho da scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Cor do fundo da scrollbar */
+::-webkit-scrollbar-track {
+  background: transparent;
+  padding: 3px;
+}
+
+/* Cor do botão da scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #555555;
+  border-radius: 20px;
+}
+
+/* Cor do canto da scrollbar (onde a horizontal e vertical se encontram) */
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+/* Tudo sobre a cor do placeholder na textarea */
+/* Cor do placeholder na maioria dos browsers */
+::placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+/* Cor do placeholder no Firefox */
+::-ms-input-placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+/* Cor da seleção na maioria dos browsers */
+::selection {
+  color: black;
+  background: white;
+}
+
+/* Cor da seleção no Firefox */
+::-moz-selection {
+  color: black;
+  background: white;
+}
+
+/* Custom Font Face */
+@font-face {
+  font-family: "DunbarTall ExBold";
+  src: url("fonts/DunbarTall-ExtraBold.woff2"),
+    url("fonts/DunbarTall-ExtraBold.woff") format("woff"),
+    url("fonts/DunbarTall-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DunbarLow Light";
+  src: url("fonts/DunbarLow-Light.woff2"),
+    url("fonts/DunbarLow-Light.woff") format("woff"),
+    url("fonts/DunbarLow-Light.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DunbarLow Medium";
+  src: url("fonts/DunbarLow-Medium.woff2"),
+    url("fonts/DunbarLow-Medium.woff") format("woff"),
+    url("fonts/DunbarLow-Medium.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DunbarText Regular";
+  src: url("fonts/DunbarText-Regular.woff2"),
+    url("fonts/DunbarText-Regular.woff") format("woff"),
+    url("fonts/DunbarText-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DunbarText Bold";
+  src: url("fonts/DunbarText-Bold.woff2"),
+    url("fonts/DunbarText-Bold.woff") format("woff"),
+    url("fonts/DunbarText-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
