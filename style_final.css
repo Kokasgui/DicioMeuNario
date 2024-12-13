@@ -136,7 +136,8 @@ button#submit {
   bottom: 100px;
 }
 
-button#info {
+button#info,
+button#close {
   position: fixed;
   display: block;
   top: 25px;

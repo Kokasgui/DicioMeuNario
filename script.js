@@ -801,6 +801,9 @@ const PALAVRAS_EXISTENTES = [
   "pira",
   "pire",
   "zeus",
+  "corre",
+  "corra",
+  "corro",
 ];
 
 // LimparServidor();
@@ -826,9 +829,59 @@ const imagensCarregadas = [];
 
 let imagem;
 
+if (window.location.pathname == "/info.html") {
+  if (document.referrer.includes("palavra.html")) {
+    console.log("PALAVRA");
+    // Se o usuário veio de "palavra.html", execute a função
+    document.getElementById("close").addEventListener("click", () => {
+      window.location.href = "palavra.html";
+    });
+  }
+  if (document.referrer.includes("inicio.html")) {
+    console.log("INÍCIO");
+    // Se o usuário veio de "palavra.html", execute a função
+    document.getElementById("close").addEventListener("click", () => {
+      window.location.href = "inicio.html";
+    });
+  }
+  if (document.referrer.includes("arquivo.html")) {
+    console.log("ARQUIVO");
+    // Se o usuário veio de "palavra.html", execute a função
+    document.getElementById("close").addEventListener("click", () => {
+      window.location.href = "arquivo.html";
+    });
+  }
+}
+
 if (window.location.pathname == "/palavra.html") {
-  window.onload = PreCarregarImagens();
-  window.onload = GerarPalavra();
+  let palavraCookies = localStorage.getItem("palavra");
+  let silabasCookies = localStorage.getItem("silabas");
+  let imagemCookies = localStorage.getItem("imagem");
+
+  if (palavraCookies) {
+    document.getElementById("palavra").innerText = palavraCookies;
+  }
+  if (silabasCookies) {
+    document.getElementById("silabas").innerText = silabasCookies;
+  }
+  if (imagemCookies) {
+    document.getElementById("imagem").src = `images/${imagemCookies}.webp`;
+  }
+
+  window.onload = function () {
+    // Verificando se o parâmetro 'start' está presente na URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const startParam = urlParams.get("start");
+
+    PreCarregarImagens();
+    palavra = localStorage.getItem("palavra");
+    newPalavra = localStorage.getItem("silabas");
+
+    if (startParam === "true") {
+      // Se o parâmetro 'start' for 'true', chama a função
+      GerarPalavra();
+    }
+  };
 
   // Impede a possibilidade de dar 'enter' na textarea
   document
@@ -840,7 +893,7 @@ if (window.location.pathname == "/palavra.html") {
     });
 }
 
-if (window.location.pathname == "/arquivo.html") {
+if (window.location.pathname.includes("/arquivo.html")) {
   window.onload = MostrarHistorico();
 }
 
@@ -946,7 +999,7 @@ function GerarPalavra() {
   } while (PALAVRAS_EXISTENTES.includes(palavra)); // evita a duplicação de vogais/consoantes // Gerar nova palavra se coincidir com uma palavra existente
 
   // Mostrar palavra resultante no HTML
-  document.getElementById("palavra").innerText = palavra;
+  // document.getElementById("palavra").innerText = palavra;
 
   // ========== SEPARAÇÃO DAS SÍLABAS ==========
   newSilInicio = silInicio;
@@ -1085,14 +1138,31 @@ function GerarPalavra() {
 
   // Mostrar divisão de sílabas
   console.info(newPalavra);
-  document.getElementById("silabas").innerText = newPalavra;
+  // document.getElementById("silabas").innerText = newPalavra;
+
+  localStorage.clear();
+
+  localStorage.setItem("palavra", palavra);
+  localStorage.setItem("silabas", newPalavra);
+  localStorage.setItem("imagem", imagem);
+  console.warn(`localStorage: ${palavra} + ${newPalavra} + ${imagem}`);
+
+  document.getElementById("palavra").innerText =
+    localStorage.getItem("palavra");
+  document.getElementById("silabas").innerText =
+    localStorage.getItem("silabas");
+  document.getElementById("imagem").innerText = localStorage.getItem("imagem");
 }
 
-function EnviarSignificado() {
+function EnviarSignificado(event) {
+  // Garantir que o envio do formulário não impeça o envio dos dados para o servidor
+
   let significado = document.getElementById("significado").value;
   console.log(significado);
 
   if (significado.length >= 10) {
+    event.preventDefault();
+
     let data = {
       palavra: palavra,
       silabas: newPalavra,
@@ -1111,6 +1181,8 @@ function EnviarSignificado() {
       },
       body: JSON.stringify(data), // Convert the data to a JSON string
     });
+
+    window.location.href = "arquivo.html";
   }
 }
 
@@ -1172,18 +1244,18 @@ function MostrarHistorico() {
 }
 
 // ========== APENAS PARA LIMPEZA DO SERVIDOR ==========
-function LimparServidor() {
-  fetch("https://diciomeunario.onrender.com/data", {
-    method: "DELETE", // Usando DELETE para excluir dados no servidor
-    mode: "no-cors", // Isso pode ser necessário se o servidor não tiver CORS configurado
-    headers: {
-      "Content-Type": "application/json", // Especifica o tipo de conteúdo
-    },
-    // Aqui, você pode ou não precisar de um corpo, dependendo do que o servidor exige.
-    // Se for necessário passar dados adicionais (por exemplo, uma confirmação ou ID), o corpo pode ser incluído.
-    // body: JSON.stringify(data),
-  });
-}
+// function LimparServidor() {
+//   fetch("https://diciomeunario.onrender.com/data", {
+//     method: "DELETE", // Usando DELETE para excluir dados no servidor
+//     mode: "no-cors", // Isso pode ser necessário se o servidor não tiver CORS configurado
+//     headers: {
+//       "Content-Type": "application/json", // Especifica o tipo de conteúdo
+//     },
+//     // Aqui, você pode ou não precisar de um corpo, dependendo do que o servidor exige.
+//     // Se for necessário passar dados adicionais (por exemplo, uma confirmação ou ID), o corpo pode ser incluído.
+//     // body: JSON.stringify(data),
+//   });
+// }
 
 /*
 REGRAS DE FORMAÇÃO que vão ter de ser definidas:
