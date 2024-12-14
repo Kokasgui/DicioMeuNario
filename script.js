@@ -1030,7 +1030,7 @@ function GerarPalavra() {
       newSilFim = newSilFim.slice(1);
     }
 
-    newPalavra = `${newSilInicio}-${newSilFim}`;
+    newPalavra = `${newSilInicio}•${newSilFim}`;
   }
 
   if (newSilMeio !== undefined) {
@@ -1100,33 +1100,33 @@ function GerarPalavra() {
       newSilFim = newSilFim.slice(1);
     }
 
-    newPalavra = `${newSilInicio}-${newSilMeio}-${newSilFim}`;
+    newPalavra = `${newSilInicio}•${newSilMeio}•${newSilFim}`;
     // newPalavra = `${newSilInicio}-${newSilMeio}-${newSilFim}`.replaceAll(["a-i","a-o","a-u","e-i","e-u","i-u", "o-i","o-u"], ["ai","ao","au","ei","eu","iu", "oi","ou"]);
   }
 
   // INSERIR REGRA DE JUNTAR CONSOANTE COM R OU S
 
   const juntarDitongos = [
-    ["a-i", "ai"],
-    ["ã-o", "ão"],
-    ["a-u", "au"],
-    ["e-i", "ei"],
-    ["e-u", "eu"],
-    ["o-i", "oi"],
-    ["o-u", "ou"],
+    ["a•i", "ai"],
+    ["ã•o", "ão"],
+    ["a•u", "au"],
+    ["e•i", "ei"],
+    ["e•u", "eu"],
+    ["o•i", "oi"],
+    ["o•u", "ou"],
   ];
   const separarDitongos = [
-    ["ae", "a-e"],
-    ["ea", "e-a"],
-    ["eo", "e-o"],
-    ["ia", "i-a"],
-    ["ie", "i-e"],
-    ["io", "i-o"],
-    ["oa", "o-a"],
-    ["oe", "o-e"],
-    ["ua", "u-a"],
-    ["uo", "u-o"],
-    ["ese", "e-se"],
+    ["ae", "a•e"],
+    ["ea", "e•a"],
+    ["eo", "e•o"],
+    ["ia", "i•a"],
+    ["ie", "i•e"],
+    ["io", "i•o"],
+    ["oa", "o•a"],
+    ["oe", "o•e"],
+    ["ua", "u•a"],
+    ["uo", "u•o"],
+    ["ese", "e•se"],
   ];
 
   juntarDitongos.forEach(([de, para]) => {
