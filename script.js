@@ -804,6 +804,10 @@ const PALAVRAS_EXISTENTES = [
   "corre",
   "corra",
   "corro",
+  "leva",
+  "levo",
+  "leve",
+  "levi",
 ];
 
 // LimparServidor();
@@ -876,12 +880,14 @@ if (window.location.pathname.includes("/palavra.html")) {
     PreCarregarImagens();
     palavra = localStorage.getItem("palavra");
     newPalavra = localStorage.getItem("silabas");
+    imagem = localStorage.getItem("imagem");
 
     if (startParam === "true") {
       // Se o parâmetro 'start' for 'true', chama a função
       GerarPalavra();
     }
 
+    console.warn(`localStorage: ${palavra} + ${newPalavra} + ${imagem}`);
     substituirBulletsPorEstilo();
   };
 
@@ -1150,22 +1156,22 @@ function GerarPalavra() {
   localStorage.setItem("palavra", palavra);
   localStorage.setItem("silabas", newPalavra);
   localStorage.setItem("imagem", imagem);
-  console.warn(`localStorage: ${palavra} + ${newPalavra} + ${imagem}`);
 
   document.getElementById("palavra").innerText =
     localStorage.getItem("palavra");
   document.getElementById("silabas").innerText =
     localStorage.getItem("silabas");
-  document.getElementById("imagem").innerText = localStorage.getItem("imagem");
+  document.getElementById("imagem").src = `images/${localStorage.getItem(
+    "imagem"
+  )}.webp`;
 }
 
 function EnviarSignificado(event) {
-  // Garantir que o envio do formulário não impeça o envio dos dados para o servidor
-
   let significado = document.getElementById("significado").value;
   console.log(significado);
 
   if (significado.length >= 10) {
+    // Garantir que o envio do formulário não impeça o envio dos dados para o
     event.preventDefault();
 
     let data = {
@@ -1190,14 +1196,6 @@ function EnviarSignificado(event) {
 }
 
 function MostrarHistorico() {
-  // const data = {
-  //   // Dados de exemplo a serem enviados para o backend
-  //   // Exemplo de estrutura de dados:
-  //   // [{palavra: 'exemplo', silabas: 'ex-em-plo', significado: 'significado do exemplo'}, ...]
-  // };
-
-  // let historicoReversed;
-
   // Fazer a requisição ao backend via proxy
   fetch("https://diciomeunario-api.onrender.com/data")
     .then((response) => {
@@ -1254,7 +1252,7 @@ function substituirBulletsPorEstilo() {
 
   // Substitui o caractere '•' por um <span> com a fonte Arial Bold e padding lateral
   conteudo = conteudo.replace(/•/g, (bullet) => {
-    return `<span style="font-family: Arial, sans-serif; font-weight: bold; padding-left: 5px; padding-right: 5px;">${bullet}</span>`;
+    return `<span class="bullet">${bullet}</span>`;
   });
 
   // Atualiza o conteúdo do site com os novos elementos

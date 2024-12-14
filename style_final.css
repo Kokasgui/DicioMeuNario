@@ -49,6 +49,13 @@ span.underline {
   text-underline-offset: 4px;
 }
 
+span.bullet {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 section#info-text {
   display: block;
   position: absolute;
