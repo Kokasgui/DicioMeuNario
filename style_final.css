@@ -1,3 +1,4 @@
+/* ========================= COISAS GERAIS ======================== */
 * {
   margin: 0;
   padding: 0;
@@ -21,6 +22,7 @@ body {
   padding-bottom: 1px;
 }
 
+/* =========================== TÍTULOS ============================ */
 h1 {
   pointer-events: none;
   position: fixed;
@@ -33,6 +35,13 @@ h1 {
   right: 10px;
   margin: 100px 0 20px 0;
   z-index: 3;
+}
+
+h1.title {
+  display: block;
+  position: absolute;
+  margin: 0 auto;
+  margin-top: 100px;
 }
 
 p.subtitle {
@@ -49,48 +58,8 @@ span.underline {
   text-underline-offset: 4px;
 }
 
-span.bullet {
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-section#info-text {
-  display: block;
-  position: absolute;
-  left: 50%;
-  translate: -50% 0;
-  width: 70%;
-  height: 100%;
-  margin: 0 auto;
-  text-align: center;
-}
-
-section#info-text section:first-of-type {
-  position: absolute;
-  width: 100%;
-  top: 40%;
-  line-height: 1.75em;
-  font-size: 1.5em;
-}
-
-section#info-text section:nth-of-type(2) {
-  position: absolute;
-  margin: 0 auto;
-  bottom: 100px;
-  left: 50%;
-  translate: -50% 0;
-  width: 70%;
-  line-height: 1.75em;
-  font-size: 1em;
-}
-
-p.footer {
-  margin-top: 10px;
-}
-
-/* Botão */
+/* ============================ BOTÕES ============================ */
+/* Botão de texto */
 .button-text {
   position: fixed;
   display: inline-block;
@@ -119,13 +88,14 @@ p.footer {
   transition-property: background-color, color;
 }
 
+/* Botão de imagem */
 button {
   border: none;
   position: fixed;
   cursor: pointer;
   display: block;
   position: fixed;
-  right: calc(20% - 30px);
+  right: calc(20% - 45px);
   width: 30px;
   height: 30px;
   border: 1px solid white;
@@ -134,13 +104,19 @@ button {
   background-color: rgba(0, 0, 0, 0.3);
   transition-duration: 0.2s;
   transition-property: background-color, border-color, filter;
-  z-index: 3;
+  z-index: 4;
+}
+
+@media screen and (min-width: 1030px) {
+  button {
+    right: calc(50% - 365px);
+  }
 }
 
 button#submit {
   position: fixed;
   display: block;
-  bottom: 100px;
+  bottom: 50px;
 }
 
 button#info,
@@ -158,20 +134,52 @@ button:hover {
   transition-property: background-color, border-color, filter;
 }
 
+/* Bullet Points */
+span.bullet {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* ========================= PÁGINA INFO ========================== */
+section#info-text {
+  display: block;
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 350px;
+  text-align: center;
+}
+
+section#info-text section:first-of-type {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  line-height: 1.75em;
+  font-size: calc(1.5em - 5px);
+}
+
+section#info-text section:nth-of-type(2) {
+  margin: 0 auto;
+  margin-top: 15vh;
+  margin-bottom: 50px;
+  width: calc(40% + 160px);
+  line-height: 1.75em;
+  font-size: calc(1.25em - 5px);
+}
+
+p.footer {
+  margin-top: 10px;
+}
+
+/* ======================== PÁGINA PALAVRA ======================== */
+/* Palavra */
 h1#palavra {
   font-size: 56px;
 }
 
-img#imagem {
-  position: fixed;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background-color: #333333;
-  z-index: -1;
-}
-
+/* Sílabas */
 p#silabas {
   position: fixed;
   text-align: center;
@@ -181,6 +189,17 @@ p#silabas {
   text-align: center;
   left: 0;
   right: 0;
+}
+
+/* Imagem */
+img#imagem {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #333333;
+  z-index: -1;
 }
 
 /* Sombra nas margens do site (para a imagem) */
@@ -195,10 +214,11 @@ body::after {
   z-index: -1;
 }
 
+/* Etiqueta para entrada do significado */
 label {
   position: fixed;
   display: block;
-  bottom: 175px;
+  bottom: 150px;
   left: 50%;
   translate: -50% 0;
   width: 60%;
@@ -214,6 +234,7 @@ label {
   border-radius: 5px 5px 0 0;
 }
 
+/* Entrada do significado */
 textarea {
   position: absolute;
   display: block;
@@ -224,9 +245,9 @@ textarea {
   resize: none;
   color: white;
   border: 1px solid white;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   width: 60%;
-  height: 75px;
+  height: 100px;
   max-width: 630px;
   font-size: 0.85em;
   font-family: "DunbarText Regular";
@@ -235,26 +256,24 @@ textarea {
   border-radius: 0 0 5px 5px;
 }
 
-/* textarea:invalid {
-  border: 1px dashed black;
-} */
-
-/* Para o histórico!! */
+/* ======================== PÁGINA ARQUIVO ======================== */
+/* ----------------------- CONTAINER GERAL ------------------------ */
 div#container {
   display: flex;
   position: relative;
   flex-wrap: wrap;
   justify-content: center;
-  width: 80%;
+  width: calc(70% + 50px);
   margin: 0 auto;
   margin-top: 200px;
   margin-bottom: 160px;
-  gap: 30px 50px;
+  gap: 30px 40px;
   color: black;
   flex-grow: 1;
   z-index: 2;
 }
 
+/* Gradiente superior (para o scroll) */
 div#container::before {
   pointer-events: none;
   position: fixed;
@@ -274,6 +293,7 @@ div#container::before {
   z-index: 1;
 }
 
+/* Gradiente inferior (para o scroll) */
 div#container::after {
   pointer-events: none;
   position: fixed;
@@ -292,9 +312,10 @@ div#container::after {
   );
 }
 
+/* ----------------- CONTAINER DE CADA PALAVRA -------------------- */
 div#container div {
-  width: 100%; /* Faz cada item ocupar 25% da largura do container menos o gap */
-  max-width: 260px; /* Limita a largura máxima dos itens */
+  width: 100%;
+  max-width: 260px;
   height: 190px;
   background-color: white;
   position: relative;
@@ -303,10 +324,12 @@ div#container div {
   border-radius: 5px;
 }
 
+/* O mais recente fica realçado */
 div#container div:first-of-type {
   box-shadow: 0 0 15px 5px #555555;
 }
 
+/* Palavra */
 div#container div h3 {
   position: relative;
   display: inline-block;
@@ -320,6 +343,7 @@ div#container div h3 {
   border-radius: 5px 5px 0 0;
 }
 
+/* Imagem */
 div#container div img {
   position: relative;
   display: block;
@@ -329,6 +353,7 @@ div#container div img {
   border-radius: 0 0 5px 5px;
 }
 
+/* Significado */
 div#container div p {
   position: absolute;
   display: block;
@@ -354,7 +379,8 @@ div#container div:hover p {
   transition: 0.25s opacity;
 }
 
-/* Tudo sobre a scrollbar */
+/* ======================== OUTRAS COISAS ========================= */
+/* -------------------------- SCROLLBAR --------------------------- */
 /* Tamanho da scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -378,7 +404,7 @@ div#container div:hover p {
   background-color: transparent;
 }
 
-/* Tudo sobre a cor do placeholder na textarea */
+/* -------------------------- PLACEHOLDER ------------------------- */
 /* Cor do placeholder na maioria dos browsers */
 ::placeholder {
   color: white;
@@ -403,7 +429,7 @@ div#container div:hover p {
   background: white;
 }
 
-/* Custom Font Face */
+/* ===================== FONTES TIPOGRÁFICAS ====================== */
 @font-face {
   font-family: "DunbarTall ExBold";
   src: url("fonts/DunbarTall-ExtraBold.woff2"),

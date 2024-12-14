@@ -808,6 +808,26 @@ const PALAVRAS_EXISTENTES = [
   "levo",
   "leve",
   "levi",
+  "nutra",
+  "nutro",
+  "nutre",
+  "urra",
+  "trapo",
+  "trilha",
+  "tralha",
+  "trolha",
+  "trilho",
+  "trilhe",
+  "ele",
+  "ela",
+  "elo",
+  "elu",
+  "ile",
+  "traga",
+  "trago",
+  "trague",
+  "linho",
+  "linha",
 ];
 
 // LimparServidor();
@@ -1260,18 +1280,19 @@ function substituirBulletsPorEstilo() {
 }
 
 // ========== APENAS PARA LIMPEZA DO SERVIDOR ==========
-// function LimparServidor() {
-//   fetch("https://diciomeunario-api.onrender.com/data", {
-//     method: "DELETE", // Usando DELETE para excluir dados no servidor
-//     mode: "no-cors", // Isso pode ser necessário se o servidor não tiver CORS configurado
-//     headers: {
-//       "Content-Type": "application/json", // Especifica o tipo de conteúdo
-//     },
-//     // Aqui, você pode ou não precisar de um corpo, dependendo do que o servidor exige.
-//     // Se for necessário passar dados adicionais (por exemplo, uma confirmação ou ID), o corpo pode ser incluído.
-//     // body: JSON.stringify(data),
-//   });
-// }
+function LimparServidor() {
+  fetch("https://diciomeunario-api.onrender.com/delete", {
+    method: "GET",
+    mode: "no-cors", // Isso pode ser necessário se o servidor não tiver CORS configurado
+    headers: {
+      "Content-Type": "application/json",
+    },
+    // Aqui, você pode ou não precisar de um corpo, dependendo do que o servidor exige.
+    // Se for necessário passar dados adicionais (por exemplo, uma confirmação ou ID), o corpo pode ser incluído.
+    // body: JSON.stringify(data),
+  });
+  console.log("Servidor limpo!");
+}
 
 /*
 REGRAS DE FORMAÇÃO que vão ter de ser definidas:
@@ -1280,6 +1301,6 @@ REGRAS DE FORMAÇÃO que vão ter de ser definidas:
 - a seguir a uma consoante, não pode vir outra consoante igual | CHECK
 - a seguir a uma consoante, não podem vir rr, ss, etc. (tem de vir apenas um r, s, etc.) | CHECK
 - a seguir a uma vogal, não pode vir outra vogal que não faça ditongo com esta | CHECK
-- não pode haver 3 consoantes seguidas | CHECK?
+- não pode haver 3 consoantes seguidas | CHECK
 - cuidado com 3 vogais seguidas | CHECK
 */

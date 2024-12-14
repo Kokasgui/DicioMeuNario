@@ -16,12 +16,15 @@ const server = http.createServer((req, res) => {
 
   // Adicionando os cabeçalhos CORS para permitir acesso de diferentes origens
   res.setHeader("Access-Control-Allow-Origin", "*"); // Permite todas as origens
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE"); // Métodos permitidos
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST"); // Métodos permitidos
   res.setHeader("Access-Control-Allow-Headers", "Content-Type"); // Cabeçalhos permitidos
 
   res.setHeader("Content-Type", "application/json");
 
   if (method === "GET" && parseURL.pathname == "/data") {
+    res.end(JSON.stringify(data));
+  } else if (method === "GET" && parseURL.pathname == "/delete") {
+    data = [];
     res.end(JSON.stringify(data));
   } else if (method === "POST" && parseURL.pathname === "/data") {
     let body = "";
