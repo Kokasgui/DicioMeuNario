@@ -829,7 +829,7 @@ const imagensCarregadas = [];
 
 let imagem;
 
-if (window.location.pathname == "/info.html") {
+if (window.location.pathname.includes("/info.html")) {
   if (document.referrer.includes("palavra.html")) {
     console.log("PALAVRA");
     // Se o usuário veio de "palavra.html", execute a função
@@ -853,7 +853,7 @@ if (window.location.pathname == "/info.html") {
   }
 }
 
-if (window.location.pathname == "/palavra.html") {
+if (window.location.pathname.includes("/palavra.html")) {
   let palavraCookies = localStorage.getItem("palavra");
   let silabasCookies = localStorage.getItem("silabas");
   let imagemCookies = localStorage.getItem("imagem");
@@ -881,6 +881,8 @@ if (window.location.pathname == "/palavra.html") {
       // Se o parâmetro 'start' for 'true', chama a função
       GerarPalavra();
     }
+
+    substituirBulletsPorEstilo();
   };
 
   // Impede a possibilidade de dar 'enter' na textarea
@@ -894,7 +896,10 @@ if (window.location.pathname == "/palavra.html") {
 }
 
 if (window.location.pathname.includes("/arquivo.html")) {
-  window.onload = MostrarHistorico();
+  window.onload = function () {
+    MostrarHistorico();
+    substituirBulletsPorEstilo();
+  };
 }
 
 function PreCarregarImagens() {
@@ -1241,7 +1246,7 @@ function MostrarHistorico() {
     });
 }
 
-window.onload = substituirBulletsPorEstilo();
+// window.onload = substituirBulletsPorEstilo();
 
 function substituirBulletsPorEstilo() {
   // Seleciona o conteúdo do site que contém os bullet points
