@@ -1180,7 +1180,7 @@ function EnviarSignificado(event) {
         "Content-Type": "application/json", // Specify the content type
       },
       body: JSON.stringify(data), // Convert the data to a JSON string
-    }).then(r => window.location.href = "arquivo.html");
+    }).then((r) => (window.location.href = "arquivo.html"));
   }
 }
 
@@ -1239,6 +1239,21 @@ function MostrarHistorico() {
     .catch((error) => {
       console.error("Erro:", error); // Trata o erro
     });
+}
+
+window.onload = substituirBulletsPorEstilo();
+
+function substituirBulletsPorEstilo() {
+  // Seleciona o conteúdo do site que contém os bullet points
+  let conteudo = document.body.innerHTML;
+
+  // Substitui o caractere '•' por um <span> com a fonte Arial Bold e padding lateral
+  conteudo = conteudo.replace(/•/g, (bullet) => {
+    return `<span style="font-family: Arial, sans-serif; font-weight: bold; padding-left: 5px; padding-right: 5px;">${bullet}</span>`;
+  });
+
+  // Atualiza o conteúdo do site com os novos elementos
+  document.body.innerHTML = conteudo;
 }
 
 // ========== APENAS PARA LIMPEZA DO SERVIDOR ==========
