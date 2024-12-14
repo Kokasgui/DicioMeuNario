@@ -1180,9 +1180,7 @@ function EnviarSignificado(event) {
         "Content-Type": "application/json", // Specify the content type
       },
       body: JSON.stringify(data), // Convert the data to a JSON string
-    });
-
-    window.location.href = "arquivo.html";
+    }).then(r => window.location.href = "arquivo.html");
   }
 }
 
