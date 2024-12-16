@@ -70,9 +70,9 @@ span.underline {
   background-color: black;
   font-family: "DunbarText Regular";
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: lowercase;
   color: white;
-  padding: 10px 15px;
+  padding: 8px 15px 12px;
   border: 1px solid white;
   border-radius: 50px;
   margin-bottom: 100px;
@@ -105,11 +105,9 @@ button {
   transition-duration: 0.2s;
   transition-property: background-color, border-color, filter;
   z-index: 4;
-}
 
-@media screen and (min-width: 1030px) {
-  button {
-    right: calc(50% - 365px);
+  & img {
+    height: 100%;
   }
 }
 
@@ -132,6 +130,36 @@ button:hover {
   background-color: black;
   transition-duration: 0.2s;
   transition-property: background-color, border-color, filter;
+}
+
+/* Só para transição, caso os profs queiram :p */
+@media screen and (min-width: 700px) and (max-width: 1039px) {
+  button#info,
+  button#close {
+    top: calc(7vw - 25px);
+  }
+}
+
+@media screen and (min-width: 1040px) {
+  button {
+    min-width: 30px;
+    right: calc(35% - 200px);
+  }
+
+  button#info,
+  button#close {
+    top: 45px;
+  }
+
+  /* button#submit {
+    width: calc(15% - 130px);
+
+    & img {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  } */
 }
 
 /* Bullet Points */
@@ -210,7 +238,7 @@ body::after {
   height: 100%;
   content: "";
   background: none;
-  box-shadow: inset 0 0 50px 25px black;
+  box-shadow: inset 0 0 100px 25px black;
   z-index: -1;
 }
 
@@ -263,7 +291,8 @@ div#container {
   position: relative;
   flex-wrap: wrap;
   justify-content: center;
-  width: calc(70% + 50px);
+  /* right: calc(35% - 200px); */
+  width: calc(65% + 50px);
   margin: 0 auto;
   margin-top: 200px;
   margin-bottom: 160px;
@@ -326,7 +355,7 @@ div#container div {
 
 /* O mais recente fica realçado */
 div#container div:first-of-type {
-  box-shadow: 0 0 15px 5px #555555;
+  box-shadow: 0 0 20px 10px #555555;
 }
 
 /* Palavra */

@@ -5,10 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const url = require("url");
 
-data = [
-  // { palavra: "banana", significado: "fruta" },
-  // { palavra: "caneca", significado: "objeto" },
-];
+data = [];
 
 const server = http.createServer((req, res) => {
   const { method, url: reqUrl } = req;

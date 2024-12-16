@@ -450,6 +450,7 @@ const SIL_FIM = [
 const PALAVRAS_EXISTENTES = [
   "ganho",
   "ganha",
+  "ganhe",
   "tapo",
   "tapa",
   "joão",
@@ -461,7 +462,6 @@ const PALAVRAS_EXISTENTES = [
   "temo",
   "maus",
   "sobra",
-  "tua",
   "emo",
   "foca",
   "foco",
@@ -473,7 +473,6 @@ const PALAVRAS_EXISTENTES = [
   "rimam",
   "peão",
   "vaca",
-  "uma",
   "duma",
   "baza",
   "bazo",
@@ -596,8 +595,6 @@ const PALAVRAS_EXISTENTES = [
   "rude",
   "ira",
   "classe",
-  "bebo",
-  "beba",
   "vinagre",
   "lave",
   "lava",
@@ -609,7 +606,6 @@ const PALAVRAS_EXISTENTES = [
   "solde",
   "fofo",
   "fofa",
-  "tussa",
   "siga",
   "sigo",
   "rara",
@@ -625,7 +621,6 @@ const PALAVRAS_EXISTENTES = [
   "bulha",
   "fila",
   "grana",
-  "prata",
   "lenha",
   "lenho",
   "tolo",
@@ -788,6 +783,8 @@ const PALAVRAS_EXISTENTES = [
   "rimei",
   "rimai",
   "rimas",
+  "rimos",
+  "rimes",
   "velho",
   "velha",
   "velhos",
@@ -823,19 +820,236 @@ const PALAVRAS_EXISTENTES = [
   "elo",
   "elu",
   "ile",
+  "eles",
+  "elas",
+  "elus",
+  "iles",
   "traga",
   "trago",
   "trague",
   "linho",
   "linha",
+  "rojo",
+  "roja",
+  "roje",
+  "rojes",
+  "rojas",
+  "rojei",
+  "salda",
+  "saldo",
+  "salde",
+  "talo",
+  "talos",
+  "tua",
+  "tuas",
+  "crise",
+  "crises",
+  "gata",
+  "gato",
+  "gatas",
+  "gatos",
+  "viva",
+  "vivo",
+  "vive",
+  "ato",
+  "ata",
+  "ate",
+  "traem",
+  "nitro",
+  "grua",
+  "ola",
+  "torra",
+  "torre",
+  "torro",
+  "rubro",
+  "rubra",
+  "mora",
+  "moro",
+  "more",
+  "siso",
+  "ureia",
+  "tesa",
+  "teso",
+  "tese",
+  "trica",
+  "trico",
+  "trama",
+  "tramo",
+  "trame",
+  "joel",
+  "joão",
+  "febras",
+  "febres",
+  "febris",
+  "febros",
+  "febra",
+  "febre",
+  "febro",
+  "nora",
+  "noras",
+  "coro",
+  "coral",
+  "goro",
+  "gorro",
+  "gorros",
+  "nojo",
+  "boro",
+  "riba",
+  "quissa",
+  "quisso",
+  "quisse",
+  "quisesse",
+  "quenho",
+  "quenhe",
+  "quenha",
+  "missa",
+  "magro",
+  "magra",
+  "magre",
+  "tino",
+  "tina",
+  "bibo",
+  "pota",
+  "pote",
+  "poto",
+  "vede",
+  "vedo",
+  "veda",
+  "usa",
+  "uso",
+  "use",
+  "usas",
+  "usos",
+  "uses",
+  "rua",
+  "rui",
+  "ruas",
+  "ruis",
+  "nua",
+  "nuas",
+  "nega",
+  "nego",
+  "negas",
+  "data",
+  "dato",
+  "date",
+  "serra",
+  "serro",
+  "serre",
+  "tifa",
+  "ninha",
+  "ninho",
+  "ninhe",
+  "ninhos",
+  "ninhas",
+  "ninhes",
+  "pena",
+  "pene",
+  "peno",
+  "penas",
+  "penes",
+  "penos",
+  "prega",
+  "prego",
+  "pregue",
+  "todo",
+  "toda",
+  "todos",
+  "todas",
+  "todes",
+  "ralo",
+  "rala",
+  "rale",
+  "ralos",
+  "ralas",
+  "rales",
+  "ogre",
+  "sogro",
+  "sogra",
+  "sogros",
+  "sogras",
+  "auto",
+  "autos",
+  "jazo",
+  "jaza",
+  "jaze",
+  "jazi",
+  "jazas",
+  "grilo",
+  "grelo",
+  "bufo",
+  "bufa",
+  "bufe",
+  "bufos",
+  "bufas",
+  "fubes",
+  "toto",
+  "pilhe",
+  "pilha",
+  "pilho",
+  "mija",
+  "mijo",
+  "pica",
+  "pico",
+  "vinho",
+  "vinha",
+  "vinde",
+  "vinda",
+  "vindo",
+  "cave",
+  "cava",
+  "cavo",
+  "transem",
+  "transam",
+  "transei",
+  "muto",
+  "muta",
+  "mute",
+  "mutai",
+  "mutou",
+  "mutei",
+  "cama",
+  "came",
+  "moto",
+  "mota",
+  "mote",
+  "vias",
+  "vios",
+  "raja",
+  "rolho",
+  "rolha",
+  "tamanho",
+  "tamanha",
+  "sujo",
+  "suja",
+  "suje",
+  "alem",
+  "senha",
+  "senho",
+  "sonho",
+  "sonha",
+  "sonhe",
+  "piada",
+  "pião",
+  "peão",
+  "pato",
+  "pata",
+  "pate",
+  "punho",
+  "punha",
+  "durita",
+  "durito",
+  "cobre",
+  "cobra",
+  "cobro",
+  "cobri",
+  "dela",
+  "dele",
 ];
 
 // LimparServidor();
 
 //  vuoczo, transxaou, ilnhoco
-
-// MAS A PALAVRA mueia FUNCIONA!!!!!!!! AAHHHHHHHH
-// Isto desativa a possibilidade de
 
 let palavra;
 
@@ -849,7 +1063,7 @@ let newSilFim;
 
 let newPalavra;
 
-const imagensCarregadas = [];
+// const imagensCarregadas = [];
 
 let imagem;
 
@@ -863,14 +1077,14 @@ if (window.location.pathname.includes("/info.html")) {
   }
   if (document.referrer.includes("inicio.html")) {
     console.log("INÍCIO");
-    // Se o usuário veio de "palavra.html", execute a função
+    // Se o usuário veio de "inicio.html", execute a função
     document.getElementById("close").addEventListener("click", () => {
       window.location.href = "inicio.html";
     });
   }
   if (document.referrer.includes("arquivo.html")) {
     console.log("ARQUIVO");
-    // Se o usuário veio de "palavra.html", execute a função
+    // Se o usuário veio de "arquivo.html", execute a função
     document.getElementById("close").addEventListener("click", () => {
       window.location.href = "arquivo.html";
     });
@@ -889,7 +1103,9 @@ if (window.location.pathname.includes("/palavra.html")) {
     document.getElementById("silabas").innerText = silabasCookies;
   }
   if (imagemCookies) {
-    document.getElementById("imagem").src = `images/${imagemCookies}.webp`;
+    document.getElementById(
+      "imagem"
+    ).src = `images/grandes/${imagemCookies}.webp`;
   }
 
   window.onload = function () {
@@ -897,7 +1113,7 @@ if (window.location.pathname.includes("/palavra.html")) {
     const urlParams = new URLSearchParams(window.location.search);
     const startParam = urlParams.get("start");
 
-    PreCarregarImagens();
+    // PreCarregarImagens();
     palavra = localStorage.getItem("palavra");
     newPalavra = localStorage.getItem("silabas");
     imagem = localStorage.getItem("imagem");
@@ -909,41 +1125,42 @@ if (window.location.pathname.includes("/palavra.html")) {
 
     console.warn(`localStorage: ${palavra} + ${newPalavra} + ${imagem}`);
     substituirBulletsPorEstilo();
-  };
 
-  // Impede a possibilidade de dar 'enter' na textarea
-  document
-    .getElementById("significado")
-    .addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        event.preventDefault(); // Impede a ação padrão de adicionar uma nova linha
-      }
-    });
+    // Impede a possibilidade de dar 'enter' na textarea
+    document
+      .getElementById("significado")
+      .addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault(); // Impede a ação padrão de adicionar uma nova linha
+        }
+      });
+  };
 }
 
 if (window.location.pathname.includes("/arquivo.html")) {
   window.onload = function () {
-    MostrarHistorico();
+    MostrarArquivo();
     substituirBulletsPorEstilo();
   };
 }
 
-function PreCarregarImagens() {
-  for (let i = 57; i <= 84; i++) {
-    let img = new Image(); // Cria um novo objeto de imagem
-    img.src = `images/${i}.webp`; // Define o caminho da imagem
-    let imgName = i;
-    imagensCarregadas.push(imgName); // Armazena O NOME da imagem no array
-    console.warn(imagensCarregadas);
-  }
-}
+// // Acho que isto é obsoleto
+// function PreCarregarImagens() {
+//   for (let i = 57; i <= 84; i++) {
+//     let img = new Image(); // Cria um novo objeto de imagem
+//     img.src = `images/grandes/${i}.webp`; // Define o caminho da imagem
+//     let imgName = i;
+//     imagensCarregadas.push(imgName); // Armazena O NOME da imagem no array
+//     console.warn(imagensCarregadas);
+//   }
+// }
 
+// Gerar pseudo-palavra, sílabas e imagem respetiva
 function GerarPalavra() {
   // ========== GERAÇÃO DE IMAGEM ==========
-  imagem =
-    imagensCarregadas[Math.floor(Math.random() * imagensCarregadas.length)];
+  imagem = Math.floor(Math.random() * 75) + 1;
   console.info(imagem);
-  document.getElementById("imagem").src = `images/${imagem}.webp`;
+  document.getElementById("imagem").src = `images/grandes/${imagem}.webp`;
 
   // ========== GERAÇÃO DE PSEUDO-PALAVRAS ==========
   // Reset das sílabas
@@ -1028,9 +1245,6 @@ function GerarPalavra() {
     palavra += silFim; // Sílaba final
     console.log("Sílaba final: " + palavra);
   } while (PALAVRAS_EXISTENTES.includes(palavra)); // evita a duplicação de vogais/consoantes // Gerar nova palavra se coincidir com uma palavra existente
-
-  // Mostrar palavra resultante no HTML
-  // document.getElementById("palavra").innerText = palavra;
 
   // ========== SEPARAÇÃO DAS SÍLABAS ==========
   newSilInicio = silInicio;
@@ -1169,23 +1383,25 @@ function GerarPalavra() {
 
   // Mostrar divisão de sílabas
   console.info(newPalavra);
-  // document.getElementById("silabas").innerText = newPalavra;
 
+  // Armazenar a informação gerada nos cookies do browser
   localStorage.clear();
 
   localStorage.setItem("palavra", palavra);
   localStorage.setItem("silabas", newPalavra);
   localStorage.setItem("imagem", imagem);
 
+  // Mostrar a informação no site de acordo com os cookies
   document.getElementById("palavra").innerText =
     localStorage.getItem("palavra");
   document.getElementById("silabas").innerText =
     localStorage.getItem("silabas");
-  document.getElementById("imagem").src = `images/${localStorage.getItem(
+  document.getElementById(
     "imagem"
-  )}.webp`;
+  ).src = `images/grandes/${localStorage.getItem("imagem")}.webp`;
 }
 
+// Enviar resultados da geração e significado para o servidor
 function EnviarSignificado(event) {
   let significado = document.getElementById("significado").value;
   console.log(significado);
@@ -1215,7 +1431,8 @@ function EnviarSignificado(event) {
   }
 }
 
-function MostrarHistorico() {
+// Mostrar as informações do servidor no arquivo
+function MostrarArquivo() {
   // Fazer a requisição ao backend via proxy
   fetch("https://diciomeunario-api.onrender.com/data")
     .then((response) => {
@@ -1250,7 +1467,7 @@ function MostrarHistorico() {
           // Preenchendo a div com o conteúdo
           div.innerHTML = `
             <h3>${item.palavra}</h1>  <!-- Exibe a palavra -->
-            <img width="100px" height="auto" src="images/${item.imagem}.webp" alt="Imagem gerada anteriormente"> <!-- Exibe a imagem -->
+            <img width="100%" height="auto" src="images/pequenas/${item.imagem}.webp" alt="Imagem gerada anteriormente"> <!-- Exibe a imagem -->
             <p>${item.significado}</p> <!-- Exibe o significado -->
           `;
 
@@ -1264,8 +1481,7 @@ function MostrarHistorico() {
     });
 }
 
-// window.onload = substituirBulletsPorEstilo();
-
+// Colocar os bullet points redondos (já que a fonte usada não tem)
 function substituirBulletsPorEstilo() {
   // Seleciona o conteúdo do site que contém os bullet points
   let conteudo = document.body.innerHTML;
