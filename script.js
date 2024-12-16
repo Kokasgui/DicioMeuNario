@@ -1,4 +1,4 @@
-// ========== CONJUNTOS DE SÍLABAS ==========
+// ============================================ ARRAYS DE SÍLABAS =====================================================
 const SIL_INICIO = [
   "a",
   "e",
@@ -446,7 +446,7 @@ const SIL_FIM = [
   "lho",
 ]; // Sílabas finais
 
-// ========== CONJUNTO DAS PALAVRAS QUE JÁ EXISTEM ==========
+// ====================================== ARRAY DAS PALAVRAS EXISTENTES ===============================================
 const PALAVRAS_EXISTENTES = [
   "ganho",
   "ganha",
@@ -1050,6 +1050,7 @@ const PALAVRAS_EXISTENTES = [
 // LimparServidor();
 
 //  vuoczo, transxaou, ilnhoco
+// ================================================= VARIÁVEIS ========================================================
 
 let palavra;
 
@@ -1063,10 +1064,11 @@ let newSilFim;
 
 let newPalavra;
 
-// const imagensCarregadas = [];
+let ultimasImagens = [];
 
 let imagem;
 
+// ------------------------------------------- CARREGAMENTO DAS PÁGINAS -----------------------------------------------
 if (window.location.pathname.includes("/info.html")) {
   if (document.referrer.includes("palavra.html")) {
     console.log("PALAVRA");
@@ -1159,14 +1161,36 @@ if (window.location.pathname.includes("/arquivo.html")) {
 //   }
 // }
 
-// Gerar pseudo-palavra, sílabas e imagem respetiva
+// =========================================== PALAVRA, SÍLABAS E IMAGEM ==============================================
 function GerarPalavra() {
-  // ========== GERAÇÃO DE IMAGEM ==========
-  imagem = Math.floor(Math.random() * 75) + 1;
-  console.info(imagem);
-  document.getElementById("imagem").src = `images/grandes/${imagem}.webp`;
+  // -------------------------------------------- GERAÇÃO DE IMAGEM ---------------------------------------------------
+  fetch("https://diciomeunario-api.onrender.com/data")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erro na requisição: " + response.statusText); // Lida com erros de status
+      }
+      return response.json(); // Processa a resposta como JSON
+    })
+    .then((responseData) => {
+      console.log(responseData[responseData.length - 1]); // Exibe a resposta no console
 
-  // ========== GERAÇÃO DE PSEUDO-PALAVRAS ==========
+      if (!Array.isArray(responseData)) {
+        throw new Error("A resposta não é um array válido."); // Checa se a resposta é um array
+      }
+
+      ultimasImagens.push(
+        responseData[responseData.length - 1].ultimas_imagens
+      );
+      console.log(ultimasImagens);
+    });
+
+  do {
+    imagem = Math.floor(Math.random() * 75) + 1;
+    console.info(imagem);
+    document.getElementById("imagem").src = `images/grandes/${imagem}.webp`;
+  } while (ultimasImagens.includes(imagem));
+
+  // ---------------------------------------- GERAÇÃO DE PSEUDO-PALAVRAS ----------------------------------------------
   // Reset das sílabas
   silInicio = undefined;
   silMeio = undefined;
@@ -1248,9 +1272,9 @@ function GerarPalavra() {
 
     palavra += silFim; // Sílaba final
     console.log("Sílaba final: " + palavra);
-  } while (PALAVRAS_EXISTENTES.includes(palavra)); // evita a duplicação de vogais/consoantes // Gerar nova palavra se coincidir com uma palavra existente
+  } while (PALAVRAS_EXISTENTES.includes(palavra)); // Gerar nova palavra se coincidir com uma palavra existente
 
-  // ========== SEPARAÇÃO DAS SÍLABAS ==========
+  // -------------------------------------------- SEPARAÇÃO DAS SÍLABAS -----------------------------------------------
   newSilInicio = silInicio;
   newSilMeio = silMeio;
   newSilFim = silFim;
@@ -1350,7 +1374,6 @@ function GerarPalavra() {
     }
 
     newPalavra = `${newSilInicio}•${newSilMeio}•${newSilFim}`;
-    // newPalavra = `${newSilInicio}-${newSilMeio}-${newSilFim}`.replaceAll(["a-i","a-o","a-u","e-i","e-u","i-u", "o-i","o-u"], ["ai","ao","au","ei","eu","iu", "oi","ou"]);
   }
 
   // INSERIR REGRA DE JUNTAR CONSOANTE COM R OU S
@@ -1405,20 +1428,30 @@ function GerarPalavra() {
   ).src = `images/grandes/${localStorage.getItem("imagem")}.webp`;
 }
 
-// Enviar resultados da geração e significado para o servidor
+// =============================================== ENVIO DA PALAVRA ===================================================
 function EnviarSignificado(event) {
   let significado = document.getElementById("significado").value;
   console.log(significado);
 
   if (significado.length >= 10) {
-    // Garantir que o envio do formulário não impeça o envio dos dados para o
+    // Garantir que o envio do formulário não impeça o envio dos dados para o servidor, sem antes fazer o resto
     event.preventDefault();
+
+    // debugger;
+
+    ultimasImagens.push(imagem);
+    if (ultimasImagens.length > 3) {
+      ultimasImagens.shift();
+    }
+
+    console.log(ultimasImagens);
 
     let data = {
       palavra: palavra,
       silabas: newPalavra,
       significado: significado,
       imagem: imagem,
+      ultimas_imagens: ultimasImagens,
     };
 
     console.log(data);
@@ -1435,7 +1468,7 @@ function EnviarSignificado(event) {
   }
 }
 
-// Mostrar as informações do servidor no arquivo
+// =================================================== ARQUIVO ========================================================
 function MostrarArquivo() {
   // Fazer a requisição ao backend via proxy
   fetch("https://diciomeunario-api.onrender.com/data")
@@ -1493,7 +1526,7 @@ function MostrarArquivo() {
     });
 }
 
-// Colocar os bullet points redondos (já que a fonte usada não tem)
+//::::::::::::::::::::::::::::::::::::::::::::::::::: BULLET POINTS :::::::::::::::::::::::::::::::::::::::::::::::::::
 function substituirBulletsPorEstilo() {
   // Seleciona o conteúdo do site que contém os bullet points
   let conteudo = document.body.innerHTML;
@@ -1507,7 +1540,7 @@ function substituirBulletsPorEstilo() {
   document.body.innerHTML = conteudo;
 }
 
-// ========== APENAS PARA LIMPEZA DO SERVIDOR ==========
+// ========================================= APENAS PARA LIMPEZA DO SERVIDOR ==========================================
 function LimparServidor() {
   fetch("https://diciomeunario-api.onrender.com/delete", {
     method: "GET",
