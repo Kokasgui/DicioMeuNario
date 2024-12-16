@@ -1096,35 +1096,35 @@ if (window.location.pathname.includes("/info.html")) {
 }
 
 if (window.location.pathname.includes("/palavra.html")) {
-  let palavraCookies = localStorage.getItem("palavra");
-  let silabasCookies = localStorage.getItem("silabas");
-  let imagemCookies = localStorage.getItem("imagem");
-
-  if (palavraCookies) {
-    document.getElementById("palavra").innerText = palavraCookies;
-  }
-  if (silabasCookies) {
-    document.getElementById("silabas").innerText = silabasCookies;
-  }
-  if (imagemCookies) {
-    document.getElementById(
-      "imagem"
-    ).src = `images/grandes/${imagemCookies}.webp`;
-  }
-
   window.onload = function () {
+    let palavraCookies = localStorage.getItem("palavra");
+    let silabasCookies = localStorage.getItem("silabas");
+    let imagemCookies = localStorage.getItem("imagem");
+
     // Verificando se o parâmetro 'start' está presente na URL
     const urlParams = new URLSearchParams(window.location.search);
     const startParam = urlParams.get("start");
 
-    // PreCarregarImagens();
-    palavra = localStorage.getItem("palavra");
-    newPalavra = localStorage.getItem("silabas");
-    imagem = localStorage.getItem("imagem");
-
     if (startParam === "true") {
       // Se o parâmetro 'start' for 'true', chama a função
       GerarPalavra();
+    } else {
+      // PreCarregarImagens();
+      palavra = localStorage.getItem("palavra");
+      newPalavra = localStorage.getItem("silabas");
+      imagem = localStorage.getItem("imagem");
+
+      if (palavraCookies) {
+        document.getElementById("palavra").innerText = palavraCookies;
+      }
+      if (silabasCookies) {
+        document.getElementById("silabas").innerText = silabasCookies;
+      }
+      if (imagemCookies) {
+        document.getElementById(
+          "imagem"
+        ).src = `images/grandes/${imagemCookies}.webp`;
+      }
     }
 
     console.warn(`localStorage: ${palavra} + ${newPalavra} + ${imagem}`);
