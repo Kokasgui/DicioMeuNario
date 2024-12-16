@@ -1045,6 +1045,13 @@ const PALAVRAS_EXISTENTES = [
   "cobri",
   "dela",
   "dele",
+  "passo",
+  "passa",
+  "passe",
+  "pano",
+  "pana",
+  "nossa",
+  "nosso",
 ];
 
 // LimparServidor();
@@ -1178,7 +1185,7 @@ function GerarPalavra() {
         throw new Error("A resposta não é um array válido."); // Checa se a resposta é um array
       }
 
-      ultimasImagens.push(
+      ultimasImagens = ultimasImagens.concat(
         responseData[responseData.length - 1].ultimas_imagens
       );
       console.log(ultimasImagens);
@@ -1436,8 +1443,6 @@ function EnviarSignificado(event) {
   if (significado.length >= 10) {
     // Garantir que o envio do formulário não impeça o envio dos dados para o servidor, sem antes fazer o resto
     event.preventDefault();
-
-    // debugger;
 
     ultimasImagens.push(imagem);
     if (ultimasImagens.length > 3) {
