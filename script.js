@@ -1075,14 +1075,18 @@ if (window.location.pathname.includes("/info.html")) {
       window.location.href = "palavra.html";
     });
   }
-  if (document.referrer.includes("inicio.html")) {
+  if (
+    document.referrer.includes("") &&
+    document.referrer.includes("/palavra.html") == false &&
+    document.referrer.includes("/arquivo.html") == false
+  ) {
     console.log("INÍCIO");
-    // Se o usuário veio de "inicio.html", execute a função
+    // Se o usuário veio de "index.html", execute a função
     document.getElementById("close").addEventListener("click", () => {
-      window.location.href = "inicio.html";
+      window.location.href = "/";
     });
   }
-  if (document.referrer.includes("arquivo.html")) {
+  if (document.referrer.includes("/arquivo.html")) {
     console.log("ARQUIVO");
     // Se o usuário veio de "arquivo.html", execute a função
     document.getElementById("close").addEventListener("click", () => {
@@ -1456,6 +1460,14 @@ function MostrarArquivo() {
 
       // Limpar o conteúdo anterior do container (caso haja algum)
       container.innerHTML = "";
+
+      // Quando arquivo está vazio
+      if (responseData.length == 0) {
+        console.log("VAZIO");
+        document.getElementById("container").innerText =
+          "Ainda não submeteste nada. Porque não experimentar?";
+        document.getElementById("container").style.color = "white";
+      }
 
       // Iterar sobre os itens do JSON e criar uma div para cada um
       responseData.forEach((item) => {
