@@ -1078,6 +1078,10 @@ const PALAVRAS_EXISTENTES = [
   "zele",
   "zela",
   "ana",
+  "rato",
+  "rata",
+  "ratos",
+  "ratas",
 ];
 
 // LimparServidor();
@@ -1204,23 +1208,27 @@ async function GerarPalavra() {
     }
 
     const responseData = await response.json();
-    console.log(responseData[responseData.length - 1]); // Exibe a resposta no console
+    console.log(responseData); // Exibe a resposta no console
 
     if (!Array.isArray(responseData)) {
       throw new Error("A resposta não é um array válido."); // Checa se a resposta é um array
     }
+    if (responseData.stringify == []) {
+      // Isto mostra as últimas 3 imagens geradas
+      ultimasImagens = ultimasImagens.concat(
+        responseData[responseData.length - 1].ultimas_imagens
+      );
+      console.log(ultimasImagens);
 
-    // Isto mostra as últimas 3 imagens geradas
-    ultimasImagens = ultimasImagens.concat(
-      responseData[responseData.length - 1].ultimas_imagens
-    );
-    console.log(ultimasImagens);
-
-    do {
-      // Isto impede que a imagem gerada seja igual às últimas 3
+      do {
+        // Isto impede que a imagem gerada seja igual às últimas 3
+        imagem = Math.floor(Math.random() * 75) + 1;
+        console.info(imagem);
+      } while (ultimasImagens.includes(imagem));
+    } else {
       imagem = Math.floor(Math.random() * 75) + 1;
       console.info(imagem);
-    } while (ultimasImagens.includes(imagem));
+    }
   } catch (error) {
     console.error("Erro ao buscar as imagens:", error);
   }
