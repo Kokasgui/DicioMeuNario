@@ -42,6 +42,11 @@ h1.title {
   position: absolute;
   margin: 0 auto;
   margin-top: 100px;
+  /* white-space: nowrap; */
+}
+
+p {
+  text-wrap: pretty;
 }
 
 p.subtitle {
@@ -50,6 +55,17 @@ p.subtitle {
   top: 200px;
   left: 0;
   right: 0;
+}
+
+@media screen and (max-width: 700px) {
+  h1.title {
+    font-size: calc(12px + 4vw);
+    max-width: 100%;
+  }
+
+  p.subtitle {
+    top: calc(150px + 7vw);
+  }
 }
 
 span.underline {
@@ -166,39 +182,66 @@ button:hover {
 span.bullet {
   font-family: Arial, sans-serif;
   font-weight: bold;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0 5px;
+}
+
+@media screen and (max-width: 300px) {
+  span.bullet {
+    padding: 0 0.5vw;
+  }
 }
 
 /* ========================= PÁGINA INFO ========================== */
-section#info-text {
+
+main section#info-text {
   display: block;
-  position: absolute;
-  width: 100%;
-  margin: 0 auto;
-  margin-top: 350px;
-  text-align: center;
-}
-
-section#info-text section:first-of-type {
+  position: relative;
   width: 90%;
-  height: 100%;
-  margin: 0 auto;
-  line-height: 1.75em;
-  font-size: calc(1.5em - 5px);
+  text-align: center;
+  margin: auto;
+  margin-top: 300px;
+
+  & p.briefing {
+    line-height: 1.75em;
+    font-size: calc(1.5em - 5px);
+  }
 }
 
-section#info-text section:nth-of-type(2) {
-  margin: 0 auto;
-  margin-top: 15vh;
+main section#info-text section:nth-of-type(2) {
+  display: block;
+  position: relative;
+  text-align: center;
+  width: calc(30% + 200px);
+  max-width: 100%;
+  line-height: 1.75em;
+  font-size: calc(1em - 5px);
+  margin: auto;
+  margin-top: calc(20vw + 10vh - 80px);
   margin-bottom: 50px;
-  width: calc(40% + 160px);
-  line-height: 1.75em;
-  font-size: calc(1.25em - 5px);
+
+  & p.footer {
+    margin-bottom: 20px;
+    text-wrap: pretty;
+  }
+
+  & span.no-wrap {
+    white-space: nowrap;
+  }
 }
 
-p.footer {
-  margin-top: 10px;
+@media screen and (min-width: 900px) {
+  main section#info-text section:nth-of-type(2) {
+    position: fixed;
+    left: 50%;
+    translate: -50% 0;
+    bottom: 50px;
+    margin: 0;
+    width: 80%;
+
+    & p.footer {
+      margin: 0;
+    }
+  }
 }
 
 /* ======================== PÁGINA PALAVRA ======================== */
@@ -217,6 +260,18 @@ p#silabas {
   text-align: center;
   left: 0;
   right: 0;
+}
+
+@media screen and (max-width: 700px) {
+  h1#palavra {
+    font-size: calc(40px + 2vw);
+    max-width: 100%;
+  }
+
+  p#silabas {
+    font-size: calc(1.3rem + 0.5vw);
+    top: calc(160px + 3vw);
+  }
 }
 
 /* Imagem */

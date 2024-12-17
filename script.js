@@ -1185,6 +1185,7 @@ function GerarPalavra() {
         throw new Error("A resposta não é um array válido."); // Checa se a resposta é um array
       }
 
+      // Isto mostra as últimas 3 imagens geradas
       ultimasImagens = ultimasImagens.concat(
         responseData[responseData.length - 1].ultimas_imagens
       );
@@ -1192,6 +1193,7 @@ function GerarPalavra() {
     });
 
   do {
+    // Isto impede que a imagem gerada seja igual às últimas 3
     imagem = Math.floor(Math.random() * 75) + 1;
     console.info(imagem);
     document.getElementById("imagem").src = `images/grandes/${imagem}.webp`;
@@ -1444,6 +1446,7 @@ function EnviarSignificado(event) {
     // Garantir que o envio do formulário não impeça o envio dos dados para o servidor, sem antes fazer o resto
     event.preventDefault();
 
+    // Adiciona a imagem gerada ao conjunto das mais recentes, impedindo que este exceda 3 elementos
     ultimasImagens.push(imagem);
     if (ultimasImagens.length > 3) {
       ultimasImagens.shift();
