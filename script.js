@@ -1196,10 +1196,8 @@ if (window.location.pathname.includes("/arquivo.html")) {
 
 // =========================================== PALAVRA, SÍLABAS E IMAGEM ==============================================
 async function GerarPalavra() {
-  // debugger;
-
+  // -------------------------------------------- GERAÇÃO DE IMAGEM ---------------------------------------------------
   try {
-    // -------------------------------------------- GERAÇÃO DE IMAGEM ---------------------------------------------------
     const response = await fetch("https://diciomeunario-api.onrender.com/data");
     if (!response.ok) {
       throw new Error("Erro na requisição: " + response.statusText); // Lida com erros de status
