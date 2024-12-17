@@ -560,6 +560,7 @@ const PALAVRAS_EXISTENTES = [
   "soas",
   "lapa",
   "tubo",
+  "fibra",
   "fibras",
   "grade",
   "grado",
@@ -1016,6 +1017,7 @@ const PALAVRAS_EXISTENTES = [
   "vias",
   "vios",
   "raja",
+  "rajo",
   "rolho",
   "rolha",
   "tamanho",
@@ -1052,6 +1054,30 @@ const PALAVRAS_EXISTENTES = [
   "pana",
   "nossa",
   "nosso",
+  "tiro",
+  "tira",
+  "tire",
+  "muito",
+  "muita",
+  "fura",
+  "furo",
+  "fure",
+  "usam",
+  "puxa",
+  "puxo",
+  "puxe",
+  "puxam",
+  "marre",
+  "marra",
+  "marro",
+  "ruca",
+  "rara",
+  "raro",
+  "roque",
+  "zelo",
+  "zele",
+  "zela",
+  "ana",
 ];
 
 // LimparServidor();
@@ -1169,35 +1195,37 @@ if (window.location.pathname.includes("/arquivo.html")) {
 // }
 
 // =========================================== PALAVRA, SÍLABAS E IMAGEM ==============================================
-function GerarPalavra() {
-  // -------------------------------------------- GERAÇÃO DE IMAGEM ---------------------------------------------------
-  fetch("https://diciomeunario-api.onrender.com/data")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Erro na requisição: " + response.statusText); // Lida com erros de status
-      }
-      return response.json(); // Processa a resposta como JSON
-    })
-    .then((responseData) => {
-      console.log(responseData[responseData.length - 1]); // Exibe a resposta no console
+async function GerarPalavra() {
+  // debugger;
 
-      if (!Array.isArray(responseData)) {
-        throw new Error("A resposta não é um array válido."); // Checa se a resposta é um array
-      }
+  try {
+    // -------------------------------------------- GERAÇÃO DE IMAGEM ---------------------------------------------------
+    const response = await fetch("https://diciomeunario-api.onrender.com/data");
+    if (!response.ok) {
+      throw new Error("Erro na requisição: " + response.statusText); // Lida com erros de status
+    }
 
-      // Isto mostra as últimas 3 imagens geradas
-      ultimasImagens = ultimasImagens.concat(
-        responseData[responseData.length - 1].ultimas_imagens
-      );
-      console.log(ultimasImagens);
-    });
+    const responseData = await response.json();
+    console.log(responseData[responseData.length - 1]); // Exibe a resposta no console
 
-  do {
-    // Isto impede que a imagem gerada seja igual às últimas 3
-    imagem = Math.floor(Math.random() * 75) + 1;
-    console.info(imagem);
-    document.getElementById("imagem").src = `images/grandes/${imagem}.webp`;
-  } while (ultimasImagens.includes(imagem));
+    if (!Array.isArray(responseData)) {
+      throw new Error("A resposta não é um array válido."); // Checa se a resposta é um array
+    }
+
+    // Isto mostra as últimas 3 imagens geradas
+    ultimasImagens = ultimasImagens.concat(
+      responseData[responseData.length - 1].ultimas_imagens
+    );
+    console.log(ultimasImagens);
+
+    do {
+      // Isto impede que a imagem gerada seja igual às últimas 3
+      imagem = Math.floor(Math.random() * 75) + 1;
+      console.info(imagem);
+    } while (ultimasImagens.includes(imagem));
+  } catch (error) {
+    console.error("Erro ao buscar as imagens:", error);
+  }
 
   // ---------------------------------------- GERAÇÃO DE PSEUDO-PALAVRAS ----------------------------------------------
   // Reset das sílabas
