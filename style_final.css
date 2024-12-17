@@ -348,6 +348,7 @@ div#container {
   justify-content: center;
   /* right: calc(35% - 200px); */
   width: calc(65% + 50px);
+  text-align: center;
   margin: 0 auto;
   margin-top: 200px;
   margin-bottom: 160px;
