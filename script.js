@@ -1600,7 +1600,7 @@ function MostrarArquivo() {
       if (responseData.length == 0) {
         console.log("VAZIO");
         document.getElementById("container").innerText =
-          "Ainda não submeteste nada. Porque não experimentar?";
+          "Ainda não há nada submetido. Porque não começares tu?";
         document.getElementById("container").style.color = "white";
       }
 
