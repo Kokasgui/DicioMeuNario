@@ -1599,8 +1599,9 @@ function MostrarArquivo() {
       // Quando arquivo está vazio
       if (responseData.length == 0) {
         console.log("VAZIO");
+        document.getElementById("button-recomecar").innerText = "Começar";
         document.getElementById("container").innerText =
-          "Ainda não há nada submetido. Porque não começares tu?";
+          "Ainda não há nada submetido. Porque não começas tu?";
         document.getElementById("container").style.color = "white";
       }
 
