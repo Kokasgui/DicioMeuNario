@@ -68,12 +68,6 @@ p.subtitle {
   }
 }
 
-span.underline {
-  text-decoration: underline;
-  text-decoration-color: white;
-  text-underline-offset: 4px;
-}
-
 /* ==================================================== BOTÕES ====================================================== */
 /* Botão de texto */
 .button-text {

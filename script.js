@@ -553,7 +553,6 @@ const PALAVRAS_EXISTENTES = [
   "sola",
   "pois",
   "letra",
-  "lara",
   "topa",
   "lares",
   "soa",
@@ -1082,6 +1081,65 @@ const PALAVRAS_EXISTENTES = [
   "rata",
   "ratos",
   "ratas",
+  "caduca",
+  "caduco",
+  "caduque",
+  "dito",
+  "dita",
+  "dite",
+  "ditos",
+  "ditas",
+  "mara",
+  "rogo",
+  "roga",
+  "rogue",
+  "rugi",
+  "alho",
+  "lora",
+  "sede",
+  "cedo",
+  "cedi",
+  "ceda",
+  "cede",
+  "zara",
+  "seta",
+  "sete",
+  "mapa",
+  "fio",
+  "fia",
+  "fie",
+  "asas",
+  "runa",
+  "runas",
+  "rumo",
+  "rume",
+  "remo",
+  "reme",
+  "rema",
+  "vaso",
+  "barulho",
+  "caos",
+  "amor",
+  "roma",
+  "milha",
+  "milho",
+  "molhe",
+  "malhe",
+  "malha",
+  "malho",
+  "trono",
+  "grama",
+  "grana",
+  "telha",
+  "lara",
+  "laras",
+  "canho",
+  "cano",
+  "cana",
+  "azul",
+  "sono",
+  "polha",
+  "polho",
 ];
 
 // LimparServidor();
@@ -1214,20 +1272,22 @@ async function GerarPalavra() {
       throw new Error("A resposta não é um array válido."); // Checa se a resposta é um array
     }
     if (responseData.stringify == []) {
+      console.log("VAZIO");
+
+      imagem = Math.floor(Math.random() * 75) + 1;
+      console.info(imagem);
+    } else {
       // Isto mostra as últimas 3 imagens geradas
       ultimasImagens = ultimasImagens.concat(
         responseData[responseData.length - 1].ultimas_imagens
       );
       console.log(ultimasImagens);
 
+      // Isto impede que a imagem gerada seja igual às últimas 3
       do {
-        // Isto impede que a imagem gerada seja igual às últimas 3
         imagem = Math.floor(Math.random() * 75) + 1;
         console.info(imagem);
       } while (ultimasImagens.includes(imagem));
-    } else {
-      imagem = Math.floor(Math.random() * 75) + 1;
-      console.info(imagem);
     }
   } catch (error) {
     console.error("Erro ao buscar as imagens:", error);
