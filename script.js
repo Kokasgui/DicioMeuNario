@@ -1140,6 +1140,51 @@ const PALAVRAS_EXISTENTES = [
   "sono",
   "polha",
   "polho",
+  "negro",
+  "negra",
+  "rose",
+  "rosa",
+  "roxo",
+  "roxa",
+  "doto",
+  "dota",
+  "dote",
+  "dotes",
+  "dotei",
+  "varre",
+  "varro",
+  "varra",
+  "dobro",
+  "dobra",
+  "dobre",
+  "mia",
+  "mias",
+  "mio",
+  "miou",
+  "suga",
+  "sugo",
+  "sugue",
+  "sugar",
+  "sugas",
+  "sugou",
+  "luis",
+  "luiz",
+  "jaro",
+  "bora",
+  "borra",
+  "borro",
+  "borre",
+  "borrei",
+  "borrada",
+  "burro",
+  "burra",
+  "burre",
+  "pose",
+  "posa",
+  "poso",
+  "posei",
+  "posou",
+  "luva",
 ];
 
 // LimparServidor();
@@ -1271,7 +1316,7 @@ async function GerarPalavra() {
     if (!Array.isArray(responseData)) {
       throw new Error("A resposta não é um array válido."); // Checa se a resposta é um array
     }
-    if (responseData.stringify == []) {
+    if (responseData.length == 0) {
       console.log("VAZIO");
 
       imagem = Math.floor(Math.random() * 75) + 1;
