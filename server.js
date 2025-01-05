@@ -34,7 +34,7 @@ const server = http.createServer((req, res) => {
         const newData = JSON.parse(body);
         data.push(newData);
         // Isto faz com que o servidor só tenha até 60 dados
-        while (data.length > 60) {
+        while (data.length > 3) {
           data.shift();
         }
         res.end(JSON.stringify(newData));
