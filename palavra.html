@@ -17,14 +17,17 @@
     </button>
   </header>
   <main>
+    <!-- Conteúdo a ser gerado -->
     <h1 id="palavra"></h1>
     <p id="silabas"></p>
     <img id="imagem" src="" alt="">
+
+    <!-- Conteúdo a ser introduzido e submetido -->
     <form>
       <label for="significado">Significado</label>
       <textarea name="significado" id="significado" required="true" rows="4" minlength="10" maxlength="200"
-        spellcheck="false" placeholder="Escreve aqui um significado..."></textarea>
-      <button id="submit" onclick="EnviarSignificado(event)">
+        spellcheck="false" placeholder="Escreve aqui um significado..." disabled="true"></textarea>
+      <button id="submit" disabled="true" onclick="EnviarSignificado(event)">
         <img src="button-arrow.svg"></img>
       </button>
     </form>

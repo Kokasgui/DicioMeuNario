@@ -1,4 +1,4 @@
-// ============================================ ARRAYS DE SÍLABAS =====================================================
+// ================================================ ARRAYS DE SÍLABAS =================================================
 const SIL_INICIO = [
   "a",
   "e",
@@ -349,7 +349,7 @@ const SIL_MEIO = [
   "lha",
   "lhe",
   "lho",
-]; // Sílabas intermédias (0 a 1)
+]; // Sílabas intermédias (que pode ser gerada ou não)
 
 const SIL_FIM = [
   "a",
@@ -446,7 +446,7 @@ const SIL_FIM = [
   "lho",
 ]; // Sílabas finais
 
-// ====================================== ARRAY DAS PALAVRAS EXISTENTES ===============================================
+// ========================================== ARRAY DAS PALAVRAS EXISTENTES ===========================================
 const PALAVRAS_EXISTENTES = [
   "ganho",
   "ganha",
@@ -594,6 +594,8 @@ const PALAVRAS_EXISTENTES = [
   "grito",
   "rude",
   "ira",
+  "iro",
+  "ire",
   "classe",
   "vinagre",
   "lave",
@@ -1116,7 +1118,6 @@ const PALAVRAS_EXISTENTES = [
   "remo",
   "reme",
   "rema",
-  "vaso",
   "barulho",
   "caos",
   "amor",
@@ -1185,125 +1186,142 @@ const PALAVRAS_EXISTENTES = [
   "posei",
   "posou",
   "luva",
+  "rita",
+  "rito",
+  "reto",
+  "reta",
+  "graxa",
+  "graxo",
+  "graxi",
+  "amou",
+  "amei",
+  "ama",
+  "amo",
+  "ame",
+  "lerda",
+  "lerdo",
+  "lerde",
+  "bita",
+  "brita",
+  "xana",
+  "xama",
+  "prazo",
+  "praza",
+  "prezo",
+  "preza",
+  "preze",
+  "lufa",
+  "lufada",
+  "dara",
+  "dera",
+  "goa",
+  "fede",
+  "asa",
+  "asas",
+  "vaso",
+  "vasa",
+  "bide",
+  "lema",
+  "leme",
+  "dude",
+  "gana",
+  "boda",
+  "bode",
+  "bodo",
+  "bodas",
+  "bodes",
+  "miam",
+  "trema",
+  "treme",
+  "tremo",
+  "fail",
+  "gripe",
+  "ralara",
+  "ralado",
+  "ralada",
+  "essa",
+  "esse",
+  "duna",
+  "rica",
+  "rico",
+  "beto",
+  "beta",
+  "bete",
+  "beca",
+  "beco",
+  "dojo",
+  "minha",
+  "minho",
+  "hurra",
+  "baguete",
+  "ralha",
+  "ralhe",
+  "ralho",
+  "rena",
+  "lareira",
+  "brasa",
+  "braso",
+  "brase",
+  "move",
+  "mova",
+  "movo",
+  "movi",
+  "opa",
+  "gabo",
+  "gaba",
+  "gabe",
+  "bois",
+  "io",
+  "moeda",
+  "moedas",
+  "bico",
+  "bica",
+  "povo",
 ];
 
-// LimparServidor();
-
-//  vuoczo, transxaou, ilnhoco
-// ================================================= VARIÁVEIS ========================================================
-
-let palavra;
-
+// ==================================================== VARIÁVEIS =====================================================
+// Para a geração da palavra
 let silInicio;
 let silMeio;
 let silFim;
 
+let palavra;
+
+// Para a separação das sílabas
 let newSilInicio;
 let newSilMeio;
 let newSilFim;
 
 let newPalavra;
 
+// Para a geração da imagem
 let ultimasImagens = [];
 
 let imagem;
 
-// ------------------------------------------- CARREGAMENTO DAS PÁGINAS -----------------------------------------------
-if (window.location.pathname.includes("/info.html")) {
-  if (document.referrer.includes("palavra.html")) {
-    console.log("PALAVRA");
-    // Se o usuário veio de "palavra.html", execute a função
-    document.getElementById("close").addEventListener("click", () => {
-      window.location.href = "palavra.html";
-    });
-  }
-  if (
-    document.referrer.includes("") &&
-    document.referrer.includes("/palavra.html") == false &&
-    document.referrer.includes("/arquivo.html") == false
-  ) {
-    console.log("INÍCIO");
-    // Se o usuário veio de "index.html", execute a função
-    document.getElementById("close").addEventListener("click", () => {
-      window.location.href = "/";
-    });
-  }
-  if (document.referrer.includes("/arquivo.html")) {
-    console.log("ARQUIVO");
-    // Se o usuário veio de "arquivo.html", execute a função
-    document.getElementById("close").addEventListener("click", () => {
-      window.location.href = "arquivo.html";
-    });
-  }
-}
-
+// ============================================= CARREGAMENTO DAS PÁGINAS =============================================
 if (window.location.pathname.includes("/palavra.html")) {
   window.onload = function () {
-    let palavraCookies = localStorage.getItem("palavra");
-    let silabasCookies = localStorage.getItem("silabas");
-    let imagemCookies = localStorage.getItem("imagem");
+    // Verifica o tipo de navegação utilizando PerformanceNavigationTiming (se dá refresh ou se avança/recua no histórico)
+    const navigationType = performance.getEntriesByType("navigation")[0].type;
 
-    // Verificando se o parâmetro 'start' está presente na URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const startParam = urlParams.get("start");
-
-    if (startParam === "true") {
-      // Se o parâmetro 'start' for 'true', chama a função
-      GerarPalavra();
+    if (navigationType === "back_forward") {
+      MostrarPalavra();
     } else {
-      // PreCarregarImagens();
-      palavra = localStorage.getItem("palavra");
-      newPalavra = localStorage.getItem("silabas");
-      imagem = localStorage.getItem("imagem");
-
-      if (palavraCookies) {
-        document.getElementById("palavra").innerText = palavraCookies;
-      }
-      if (silabasCookies) {
-        document.getElementById("silabas").innerText = silabasCookies;
-      }
-      if (imagemCookies) {
-        document.getElementById(
-          "imagem"
-        ).src = `images/grandes/${imagemCookies}.webp`;
-      }
+      GerarPalavra(); // Chama a função que gera uma nova palavra
     }
-
-    console.warn(`localStorage: ${palavra} + ${newPalavra} + ${imagem}`);
-    substituirBulletsPorEstilo();
-
-    // Impede a possibilidade de dar 'enter' na textarea
-    document
-      .getElementById("significado")
-      .addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-          event.preventDefault(); // Impede a ação padrão de adicionar uma nova linha
-        }
-      });
   };
 }
 
 if (window.location.pathname.includes("/arquivo.html")) {
   window.onload = function () {
     MostrarArquivo();
-    substituirBulletsPorEstilo();
   };
 }
 
-// // Acho que isto é obsoleto
-// function PreCarregarImagens() {
-//   for (let i = 57; i <= 84; i++) {
-//     let img = new Image(); // Cria um novo objeto de imagem
-//     img.src = `images/grandes/${i}.webp`; // Define o caminho da imagem
-//     let imgName = i;
-//     imagensCarregadas.push(imgName); // Armazena O NOME da imagem no array
-//     console.warn(imagensCarregadas);
-//   }
-// }
-
-// =========================================== PALAVRA, SÍLABAS E IMAGEM ==============================================
+// ===================================================== GERADOR ======================================================
 async function GerarPalavra() {
-  // -------------------------------------------- GERAÇÃO DE IMAGEM ---------------------------------------------------
+  // ----------------------------------------------- GERAÇÃO DE IMAGEM ------------------------------------------------
   try {
     const response = await fetch("https://diciomeunario-api.onrender.com/data");
     if (!response.ok) {
@@ -1311,10 +1329,10 @@ async function GerarPalavra() {
     }
 
     const responseData = await response.json();
-    console.log(responseData); // Exibe a resposta no console
+    console.log(responseData); // Exibe a resposta do servidor na consola
 
     if (!Array.isArray(responseData)) {
-      throw new Error("A resposta não é um array válido."); // Checa se a resposta é um array
+      throw new Error("A resposta não é um array válido."); // Isto verifica se a resposta é um array
     }
     if (responseData.length == 0) {
       console.log("VAZIO");
@@ -1338,7 +1356,7 @@ async function GerarPalavra() {
     console.error("Erro ao buscar as imagens:", error);
   }
 
-  // ---------------------------------------- GERAÇÃO DE PSEUDO-PALAVRAS ----------------------------------------------
+  // ------------------------------------------- GERAÇÃO DE PSEUDO-PALAVRAS -------------------------------------------
   // Reset das sílabas
   silInicio = undefined;
   silMeio = undefined;
@@ -1370,63 +1388,64 @@ async function GerarPalavra() {
     "z",
   ];
 
+  // Sílaba inicial
   do {
-    silInicio = SIL_INICIO[Math.floor(Math.random() * SIL_INICIO.length)]; // Sílaba inicial
+    silInicio = SIL_INICIO[Math.floor(Math.random() * SIL_INICIO.length)];
     palavra = silInicio;
     console.log("Sílaba inicial: " + palavra);
     // console.log(palavra.charAt(palavra.length - 1));
 
+    // Sílaba do meio
     for (let i = 0; i < Math.floor(Math.random() * 2); i++) {
       do {
         silMeio = SIL_MEIO[Math.floor(Math.random() * SIL_MEIO.length)];
-        // evita a duplicação de vogais/consoantes
         // console.log(silMeio.charAt(0));
       } while (
-        palavra.charAt(palavra.length - 1) == silMeio.charAt(0) || // evitar letras iguais entre sílabas
+        palavra.charAt(palavra.length - 1) == silMeio.charAt(0) || // evita letras iguais entre sílabas
         (consoantes.includes(palavra.charAt(palavra.length - 1)) &&
           consoantes.includes(silMeio.charAt(0)) &&
-          consoantes.includes(silMeio.charAt(1))) || // evitar três consoantes seguidas
+          consoantes.includes(silMeio.charAt(1))) || // evita três consoantes seguidas
         (consoantes.includes(palavra.charAt(palavra.length - 1)) &&
           consoantes
-            .filter((c) => c !== "r" && c !== "s" && c !== "d")
-            .includes(silMeio.charAt(0))) // evitar consoantes exceto "r", "s" e "d" a seguir a outra consoante
+            .filter((c) => c !== "r" && c !== "s")
+            .includes(silMeio.charAt(0))) // evita consoantes exceto "r" e "s" a seguir a outra consoante
       );
       palavra += silMeio; // Sílaba(s) intermédia(s)
       console.log("Sílaba(s) intermédias: " + palavra);
     }
-
     // console.log(palavra.charAt(palavra.length - 1));
+
+    // Sílaba final
     do {
       silFim = SIL_FIM[Math.floor(Math.random() * SIL_FIM.length)];
-      // evita a duplicação de vogais/consoantes
-      // console.log(silFim.substring(0, 2));
     } while (
-      palavra.charAt(palavra.length - 1) == silFim.charAt(0) || // evitar letras iguais entre sílabas
+      palavra.charAt(palavra.length - 1) == silFim.charAt(0) || // evita letras iguais entre sílabas
       (vogais.includes(palavra.charAt(palavra.length - 1)) &&
-        vogaisNasais.includes(silFim.charAt(0))) || // evitar uma vogal nasal logo a seguir a uma vogal
+        vogaisNasais.includes(silFim.charAt(0))) || // evita uma vogal nasal logo a seguir a uma vogal
       (consoantes.includes(palavra.charAt(palavra.length - 1)) &&
         consoantes
-          .filter((c) => c !== "r" && c !== "s" && c !== "d")
-          .includes(silFim.charAt(0))) || // evitar consoantes exceto "r", "s" e "d" a seguir a outra consoante
+          .filter((c) => c !== "r" && c !== "s")
+          .includes(silFim.charAt(0))) || // evita consoantes exceto "r" e "s" a seguir a outra consoante
       (consoantes.includes(palavra.charAt(palavra.length - 1)) &&
-        silFim.charAt(0) == silFim.charAt(1)) || // evitar "rr" e "ss" depois de uma consoante
+        silFim.charAt(0) == silFim.charAt(1)) || // evita "rr" e "ss" depois de uma consoante
       (palavra.charAt(palavra.length - 1) == "m" &&
-        ["r", "s", "d"].includes(silFim.charAt(0))) || // evitar "r", "s" e "d" depois de um "m"
+        ["r", "s", "d"].includes(silFim.charAt(0))) || // evita "r", "s" e "d" depois de um "m"
       (consoantes.includes(palavra.charAt(palavra.length - 1)) &&
         consoantes.includes(silFim.charAt(0)) &&
-        consoantes.includes(silFim.charAt(1))) // evitar três consoantes seguidas
+        consoantes.includes(silFim.charAt(1))) // evita três consoantes seguidas
     );
     console.info(`${silInicio} + ${silMeio} + ${silFim}`);
 
     palavra += silFim; // Sílaba final
     console.log("Sílaba final: " + palavra);
-  } while (PALAVRAS_EXISTENTES.includes(palavra)); // Gerar nova palavra se coincidir com uma palavra existente
+  } while (PALAVRAS_EXISTENTES.includes(palavra)); // Gera uma nova palavra se coincidir com uma palavra existente
 
-  // -------------------------------------------- SEPARAÇÃO DAS SÍLABAS -----------------------------------------------
+  // --------------------------------------------- SEPARAÇÃO DAS SÍLABAS ----------------------------------------------
   newSilInicio = silInicio;
   newSilMeio = silMeio;
   newSilFim = silFim;
 
+  // Caso NÃO haja sílaba do meio
   if (silMeio == undefined) {
     let newInicioBefore = newSilInicio;
 
@@ -1454,12 +1473,14 @@ async function GerarPalavra() {
     newPalavra = `${newSilInicio}•${newSilFim}`;
   }
 
+  // Caso haja sílaba do meio
   if (newSilMeio !== undefined) {
     let newInicioBefore = newSilInicio;
     let newMeioBefore = newSilMeio;
 
-    // Passar consoantes de uma sílaba para a outra
+    // Passa consoantes de uma sílaba para a outra
     if (
+      // Início + meio
       consoantes.includes(newSilInicio.charAt(newSilInicio.length - 1)) &&
       vogais.includes(newSilMeio.charAt(0))
     ) {
@@ -1469,9 +1490,9 @@ async function GerarPalavra() {
       newSilMeio =
         newInicioBefore.charAt(newInicioBefore.length - 1) + newSilMeio;
       console.log(newSilMeio);
-      // newSilFim = newSilFim;
     }
     if (
+      // Meio + fim
       consoantes.includes(silMeio.charAt(silMeio.length - 1)) &&
       (vogais.includes(silFim.charAt(0)) ||
         vogaisNasais.includes(silFim.charAt(0)))
@@ -1486,8 +1507,9 @@ async function GerarPalavra() {
     newInicioBefore = newSilInicio;
     newMeioBefore = newSilMeio;
 
-    // Passar consoante para ao pé do "r", "s" ou "l" quando é antecedida por uma vogal
+    // Passa consoante para ao pé do "r", "s" ou "l" quando é antecedida por uma vogal
     if (
+      // Meio + fim (com "r", "s" ou "l")
       consoantes
         .filter(
           (c) =>
@@ -1511,7 +1533,7 @@ async function GerarPalavra() {
       console.log(newSilFim);
     }
 
-    // Separar "rr" e "ss" pelas duas sílabas
+    // Separa "rr" e "ss" pelas duas sílabas
     if (["rr", "ss"].includes(newSilMeio.substring(0, 2))) {
       newSilInicio += newSilMeio.charAt(0);
       newSilMeio = newSilMeio.slice(1);
@@ -1556,36 +1578,78 @@ async function GerarPalavra() {
     newPalavra = newPalavra.replaceAll(de, para);
   });
 
-  // Mostrar divisão de sílabas
+  // Mostra divisão de sílabas
   console.info(newPalavra);
 
-  // Armazenar a informação gerada nos cookies do browser
-  localStorage.clear();
+  // Armazena a informação gerada na memória (da sessão) do browser
+  sessionStorage.clear();
+  sessionStorage.setItem("palavra", palavra);
+  sessionStorage.setItem("silabas", newPalavra);
+  sessionStorage.setItem("imagem", imagem);
+  sessionStorage.setItem("ultimas-imagens", JSON.stringify(ultimasImagens));
 
-  localStorage.setItem("palavra", palavra);
-  localStorage.setItem("silabas", newPalavra);
-  localStorage.setItem("imagem", imagem);
-
-  // Mostrar a informação no site de acordo com os cookies
-  document.getElementById("palavra").innerText =
-    localStorage.getItem("palavra");
-  document.getElementById("silabas").innerText =
-    localStorage.getItem("silabas");
-  document.getElementById(
-    "imagem"
-  ).src = `images/grandes/${localStorage.getItem("imagem")}.webp`;
+  MostrarPalavra(); // Mostra os resultados no website
 }
 
-// =============================================== ENVIO DA PALAVRA ===================================================
+// ========================================= MOSTRA OS RESULTADOS DO GERADOR ==========================================
+function MostrarPalavra() {
+  // Vai buscar as informações da memória do browser
+  let palavraMemoria = sessionStorage.getItem("palavra");
+  let silabasMemoria = sessionStorage.getItem("silabas");
+  let imagemMemoria = sessionStorage.getItem("imagem");
+  let ultimasImagensMemoria = sessionStorage.getItem("ultimas-imagens");
+
+  // Atualiza os valores das variáveis
+  palavra = palavraMemoria;
+  newPalavra = silabasMemoria;
+  imagem = Number(imagemMemoria); // Converte a string para um número novamente
+  ultimasImagens = JSON.parse(ultimasImagensMemoria); // Converte a string para um array, para poder ser modificado na submissão
+
+  // Exibe as informações da memória no website
+  if (palavraMemoria) {
+    document.getElementById("palavra").innerText = palavraMemoria;
+  }
+  if (silabasMemoria) {
+    document.getElementById("silabas").innerText = silabasMemoria;
+  }
+  if (imagemMemoria) {
+    document.getElementById(
+      "imagem"
+    ).src = `images/grandes/${imagemMemoria}.webp`;
+  }
+
+  console.warn(`sessionStorage: ${palavra} + ${newPalavra} + ${imagem}`);
+  console.warn(ultimasImagens);
+
+  substituirBulletsPorEstilo(); // Substitui os bullet points
+
+  // Impede a possibilidade de dar 'enter' na textarea
+  document
+    .getElementById("significado")
+    .addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault(); // Impede a ação padrão de adicionar uma nova linha
+      }
+    });
+
+  document.getElementById("submit").disabled = false;
+  document.getElementById("significado").disabled = false;
+}
+
+// ================================================= ENVIO DA PALAVRA =================================================
 function EnviarSignificado(event) {
   let significado = document.getElementById("significado").value;
   console.log(significado);
 
   if (significado.length >= 10) {
-    // Garantir que o envio do formulário não impeça o envio dos dados para o servidor, sem antes fazer o resto
+    // Garante que o envio do formulário não impeça o envio dos dados para o servidor, sem antes fazer o resto
     event.preventDefault();
 
-    // Adiciona a imagem gerada ao conjunto das mais recentes, impedindo que este exceda 3 elementos
+    // Impede que o botão seja clicado durante o processo de envio, para não ficarem palavras repetidas
+    document.getElementById("submit").disabled = true;
+    document.getElementById("significado").disabled = true;
+
+    // Adiciona a imagem gerada ao conjunto das mais recentes, impedindo que este tenha mais de 3 elementos
     ultimasImagens.push(imagem);
     if (ultimasImagens.length > 3) {
       ultimasImagens.shift();
@@ -1603,7 +1667,7 @@ function EnviarSignificado(event) {
 
     console.log(data);
 
-    // Feito pelo Rui, o namorado da Bea Gonçalves amen
+    // Feito com ajuda de Rui Barbosa
     fetch("https://diciomeunario-api.onrender.com/data", {
       method: "POST", // Specify the request method
       mode: "no-cors",
@@ -1615,9 +1679,9 @@ function EnviarSignificado(event) {
   }
 }
 
-// =================================================== ARQUIVO ========================================================
+// ===================================================== ARQUIVO ======================================================
 function MostrarArquivo() {
-  // Fazer a requisição ao backend via proxy
+  // Vai buscar os conteúdos do servidor
   fetch("https://diciomeunario-api.onrender.com/data")
     .then((response) => {
       if (!response.ok) {
@@ -1629,21 +1693,21 @@ function MostrarArquivo() {
       console.log(responseData); // Exibe a resposta no console
 
       if (!Array.isArray(responseData)) {
-        throw new Error("A resposta não é um array válido."); // Checa se a resposta é um array
+        throw new Error("A resposta não é um array válido."); // Verifica se a resposta é um array
       }
 
-      // Colocar o histórico ao contrário: o mais recente primeiro
+      // Coloca o histórico ao contrário: o mais recente primeiro
       responseData = responseData.reverse();
 
-      // Referência ao container onde as divs serão inseridas
+      // Vai buscar o container onde as divs serão inseridas
       const container = document.getElementById("container");
 
-      // Limpar o conteúdo anterior do container (caso haja algum)
+      // Limpa o conteúdo anterior do container (caso haja algum). Há partida não há mas fica aqui
       container.innerHTML = "";
 
-      // Quando arquivo está vazio
+      // Quando arquivo está vazio, convida o utilizador a ser o primeiro a colaborar (isto se alguém simplesmente decidir abrir o arquivo)
       if (responseData.length == 0) {
-        console.log("VAZIO");
+        console.warn([]);
         document.getElementById("button-recomecar").innerText = "Começar";
         document.getElementById("container").innerText =
           "Ainda não há nada submetido. Porque não começas tu?";
@@ -1654,27 +1718,41 @@ function MostrarArquivo() {
       responseData.forEach((item) => {
         if (item.palavra && item.silabas && item.significado) {
           // Verifica se os campos estão presentes
-          // Criando uma nova div
+
+          // Cria uma nova div para cada entrada
           const div = document.createElement("div");
 
-          // Preenchendo a div com o conteúdo
+          // Preenche a div com o conteúdo
+          div.tabIndex = "0"; // Serve para se poder dar tab (necessário para se ver os significados no iOS!)
           div.innerHTML = `
-            <h3>${item.palavra}</h1>  <!-- Exibe a palavra -->
+            <h3>${item.palavra}</h3> <!-- Exibe a palavra -->
+            <h3>${item.silabas}</h3> <!-- Exibe as sílabas (no hover) -->
             <img width="100%" height="auto" src="images/pequenas/${item.imagem}.webp" alt="Imagem gerada anteriormente"> <!-- Exibe a imagem -->
-            <p>${item.significado}</p> <!-- Exibe o significado -->
+            <p>${item.significado}</p> <!-- Exibe o significado (no hover) -->
           `;
 
-          // Adicionando a nova div ao container
+          div.addEventListener("click", function (event) {
+            // Previne que o foco seja atribuído ao elemento clicado
+            event.preventDefault();
+            event.stopPropagation();
+            // Isso vai impedir que o clique no elemento altere o foco da página
+          });
+          // Assim, o div só tem foco se se usar o tab
+
+          // Adiciona a nova div ao container principal
           container.appendChild(div);
         }
       });
+    })
+    .then((response) => {
+      substituirBulletsPorEstilo(); // Substitui os bullet points
     })
     .catch((error) => {
       console.error("Erro:", error); // Trata o erro
     });
 }
 
-//::::::::::::::::::::::::::::::::::::::::::::::::::: BULLET POINTS :::::::::::::::::::::::::::::::::::::::::::::::::::
+// :::::::::::::::::::::::::::::::::::::::::::::::::: BULLET POINTS :::::::::::::::::::::::::::::::::::::::::::::::::::
 function substituirBulletsPorEstilo() {
   // Seleciona o conteúdo do site que contém os bullet points
   let conteudo = document.body.innerHTML;
@@ -1683,12 +1761,23 @@ function substituirBulletsPorEstilo() {
   conteudo = conteudo.replace(/•/g, (bullet) => {
     return `<span class="bullet">${bullet}</span>`;
   });
+  if (conteudo.includes(`<span class="bullet"><span class="bullet">`)) {
+    conteudo = conteudo.replaceAll(
+      `<span class="bullet"><span class="bullet">`,
+      `<span class="bullet">`
+    );
+    if (conteudo.includes("</span></span>")) {
+      conteudo = conteudo.replaceAll("</span></span>", "</span>");
+    }
+  }
 
-  // Atualiza o conteúdo do site com os novos elementos
+  // Atualiza o conteúdo do site com os novos bullet points
   document.body.innerHTML = conteudo;
 }
 
 // ========================================= APENAS PARA LIMPEZA DO SERVIDOR ==========================================
+// LimparServidor();
+
 function LimparServidor() {
   fetch("https://diciomeunario-api.onrender.com/delete", {
     method: "GET",
@@ -1704,12 +1793,12 @@ function LimparServidor() {
 }
 
 /*
-REGRAS DE FORMAÇÃO que vão ter de ser definidas:
+REGRAS DE FORMAÇÃO DE PALAVRAS que estão definidas:
 - a seguir a uma vogal, não pode vir outra igual | CHECK
 - a seguir a uma vogal, não pode vir outra anasalada | CHECK
 - a seguir a uma consoante, não pode vir outra consoante igual | CHECK
 - a seguir a uma consoante, não podem vir rr, ss, etc. (tem de vir apenas um r, s, etc.) | CHECK
 - a seguir a uma vogal, não pode vir outra vogal que não faça ditongo com esta | CHECK
-- não pode haver 3 consoantes seguidas | CHECK
-- cuidado com 3 vogais seguidas | CHECK
+- nunca pode haver 3 consoantes seguidas | CHECK
+- ter cuidado com 3 vogais seguidas | CHECK
 */
