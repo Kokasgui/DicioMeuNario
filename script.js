@@ -1277,6 +1277,25 @@ const PALAVRAS_EXISTENTES = [
   "bico",
   "bica",
   "povo",
+  "coma",
+  "como",
+  "come",
+  "comi",
+  "cona",
+  "berre",
+  "berra",
+  "mina",
+  "mino",
+  "minimo",
+  "lepra",
+  "leproso",
+  "leprosa",
+  "leprita",
+  "leprinha",
+  "lebre",
+  "ilha",
+  "duro",
+  "dura",
 ];
 
 // ==================================================== VARIÁVEIS =====================================================
@@ -1606,34 +1625,36 @@ function MostrarPalavra() {
   ultimasImagens = JSON.parse(ultimasImagensMemoria); // Converte a string para um array, para poder ser modificado na submissão
 
   // Exibe as informações da memória no website
-  if (palavraMemoria) {
-    document.getElementById("palavra").innerText = palavraMemoria;
-  }
-  if (silabasMemoria) {
-    document.getElementById("silabas").innerText = silabasMemoria;
-  }
   if (imagemMemoria) {
     document.getElementById(
       "imagem"
     ).src = `images/grandes/${imagemMemoria}.webp`;
   }
 
-  console.warn(`sessionStorage: ${palavra} + ${newPalavra} + ${imagem}`);
-  console.warn(ultimasImagens);
+  document.getElementById("imagem").onload = function () {
+    if (palavraMemoria) {
+      document.getElementById("palavra").innerText = palavraMemoria;
+    }
+    if (silabasMemoria) {
+      document.getElementById("silabas").innerText = silabasMemoria;
+    }
 
-  substituirBulletsPorEstilo(); // Substitui os bullet points
+    console.warn(`sessionStorage: ${palavra} + ${newPalavra} + ${imagem}`);
+    console.warn(ultimasImagens);
 
-  // Impede a possibilidade de dar 'enter' na textarea
-  document
-    .getElementById("significado")
-    .addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-        event.preventDefault(); // Impede a ação padrão de adicionar uma nova linha
-      }
-    });
+    substituirBulletsPorEstilo(); // Substitui os bullet points
 
-  document.getElementById("submit").disabled = false;
-  document.getElementById("significado").disabled = false;
+    // Impede a possibilidade de dar 'enter' na textarea
+    document
+      .getElementById("significado")
+      .addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault(); // Impede a ação padrão de adicionar uma nova linha
+        }
+      });
+
+    document.getElementById("loading").style.display = "none";
+  };
 }
 
 // ================================================= ENVIO DA PALAVRA =================================================
@@ -1645,9 +1666,9 @@ function EnviarSignificado(event) {
     // Garante que o envio do formulário não impeça o envio dos dados para o servidor, sem antes fazer o resto
     event.preventDefault();
 
-    // Impede que o botão seja clicado durante o processo de envio, para não ficarem palavras repetidas
-    document.getElementById("submit").disabled = true;
-    document.getElementById("significado").disabled = true;
+    // // Impede que o botão seja clicado durante o processo de envio, para não ficarem palavras repetidas
+    // document.getElementById("submit").disabled = true;
+    // document.getElementById("significado").disabled = true;
 
     // Adiciona a imagem gerada ao conjunto das mais recentes, impedindo que este tenha mais de 3 elementos
     ultimasImagens.push(imagem);
@@ -1707,7 +1728,6 @@ function MostrarArquivo() {
 
       // Quando arquivo está vazio, convida o utilizador a ser o primeiro a colaborar (isto se alguém simplesmente decidir abrir o arquivo)
       if (responseData.length == 0) {
-        console.warn([]);
         document.getElementById("button-recomecar").innerText = "Começar";
         document.getElementById("container").innerText =
           "Ainda não há nada submetido. Porque não começas tu?";
@@ -1746,6 +1766,8 @@ function MostrarArquivo() {
     })
     .then((response) => {
       substituirBulletsPorEstilo(); // Substitui os bullet points
+      document.getElementById("button-recomecar").style.display =
+        "inline-block";
     })
     .catch((error) => {
       console.error("Erro:", error); // Trata o erro

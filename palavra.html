@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  <span id="loading"></span>
   <header>
     <button type="button" id="info" onclick="window.location.href='info.html'">
       <img src="button-info.svg">
@@ -23,11 +24,11 @@
     <img id="imagem" src="" alt="">
 
     <!-- Conteúdo a ser introduzido e submetido -->
-    <form>
+    <form id="formulario">
       <label for="significado">Significado</label>
       <textarea name="significado" id="significado" required="true" rows="4" minlength="10" maxlength="200"
-        spellcheck="false" placeholder="Escreve aqui um significado..." disabled="true"></textarea>
-      <button id="submit" disabled="true" onclick="EnviarSignificado(event)">
+        spellcheck="false" placeholder="Escreve aqui um significado..."></textarea>
+      <button id="submit" onclick="EnviarSignificado(event)">
         <img src="button-arrow.svg"></img>
       </button>
     </form>
