@@ -461,7 +461,6 @@ const PALAVRAS_EXISTENTES = [
   "fifa",
   "temo",
   "maus",
-  "sobra",
   "emo",
   "foca",
   "foco",
@@ -642,7 +641,6 @@ const PALAVRAS_EXISTENTES = [
   "rimel",
   "tusso",
   "tussa",
-  "duo",
   "galo",
   "gala",
   "toque",
@@ -699,6 +697,7 @@ const PALAVRAS_EXISTENTES = [
   "sopre",
   "sopa",
   "micra",
+  "micro",
   "mitra",
   "dino",
   "devo",
@@ -737,6 +736,7 @@ const PALAVRAS_EXISTENTES = [
   "quebra",
   "quebro",
   "quebre",
+  "quebras",
   "goza",
   "gozo",
   "mais",
@@ -826,6 +826,9 @@ const PALAVRAS_EXISTENTES = [
   "elas",
   "elus",
   "iles",
+  "ileso",
+  "ilesa",
+  "ilese",
   "traga",
   "trago",
   "trague",
@@ -1031,7 +1034,6 @@ const PALAVRAS_EXISTENTES = [
   "senho",
   "sonho",
   "sonha",
-  "sonhe",
   "piada",
   "pião",
   "peão",
@@ -1141,7 +1143,6 @@ const PALAVRAS_EXISTENTES = [
   "sono",
   "polha",
   "polho",
-  "negro",
   "negra",
   "rose",
   "rosa",
@@ -1301,6 +1302,188 @@ const PALAVRAS_EXISTENTES = [
   "rasa",
   "raso",
   "rase",
+  "goma",
+  "folheto",
+  "pusera",
+  "faina",
+  "fainas",
+  "fainona",
+  "lata",
+  "lato",
+  "boa",
+  "boas",
+  "crude",
+  "luro",
+  "lure",
+  "lura",
+  "papeis",
+  "solo",
+  "lipa",
+  "tropa",
+  "pinho",
+  "nora",
+  "garra",
+  "cabide",
+  "caca",
+  "caco",
+  "coco",
+  "medo",
+  "teto",
+  "teta",
+  "lua",
+  "luas",
+  "luana",
+  "dia",
+  "pia",
+  "tia",
+  "tio",
+  "tias",
+  "tios",
+  "guna",
+  "seca",
+  "seco",
+  "plasma",
+  "triplas",
+  "tetra",
+  "caga",
+  "cago",
+  "gama",
+  "gamo",
+  "game",
+  "quepe",
+  "queque",
+  "fire",
+  "filha",
+  "filhe",
+  "filho",
+  "lagrima",
+  "duo",
+  "duos",
+  "prota",
+  "ruca",
+  "treta",
+  "quimera",
+  "tato",
+  "tinha",
+  "pinha",
+  "ponha",
+  "penha",
+  "bruta",
+  "bruto",
+  "bife",
+  "plastico",
+  "plastica",
+  "coxa",
+  "sales",
+  "salas",
+  "salada",
+  "russa",
+  "russo",
+  "aipo",
+  "alho",
+  "doninha",
+  "propunha",
+  "proponha",
+  "proponho",
+  "duque",
+  "doque",
+  "bomba",
+  "bombo",
+  "pide",
+  "alvo",
+  "sobras",
+  "sobra",
+  "ena",
+  "pobreza",
+  "truque",
+  "raiz",
+  "dica",
+  "quero",
+  "alto",
+  "alta",
+  "alte",
+  "coca",
+  "amam",
+  "amem",
+  "bolo",
+  "bola",
+  "bole",
+  "bolota",
+  "boleta",
+  "roleta",
+  "bofa",
+  "bofo",
+  "bula",
+  "bulo",
+  "siba",
+  "sibe",
+  "suba",
+  "subo",
+  "vima",
+  "vime",
+  "troco",
+  "troca",
+  "lacro",
+  "lacra",
+  "lacre",
+  "liga",
+  "ligo",
+  "diva",
+  "divo",
+  "nuno",
+  "nuna",
+  "teresa",
+  "noa",
+  "terra",
+  "libre",
+  "libra",
+  "libras",
+  "libro",
+  "calibre",
+  "calibra",
+  "calibro",
+  "delego",
+  "delega",
+  "fita",
+  "fito",
+  "fite",
+  "ponho",
+  "ponha",
+  "bloque",
+  "holo",
+  "trofa",
+  "neve",
+  "neva",
+  "nevo",
+  "fumo",
+  "fuma",
+  "fume",
+  "sena",
+  "riso",
+  "vila",
+  "baba",
+  "babe",
+  "babo",
+  "irra",
+  "crista",
+  "cristo",
+  "trela",
+  "trelo",
+  "doas",
+  "migo",
+  "miga",
+  "mesa",
+  "massiva",
+  "massivo",
+  "soba",
+  "sobra",
+  "sobre",
+  "sobro",
+  "clama",
+  "clame",
+  "clamo",
+  "unha",
+  "gazela",
 ];
 
 // ==================================================== VARIÁVEIS =====================================================
@@ -1361,8 +1544,11 @@ async function GerarPalavra() {
     if (responseData.length == 0) {
       console.log("VAZIO");
 
-      imagem = Math.floor(Math.random() * 75) + 1;
-      console.info(imagem);
+      // Isto impede que a imagem gerada seja igual à última que viu
+      do {
+        imagem = Math.floor(Math.random() * 75) + 1;
+        console.info(imagem);
+      } while (imagem == sessionStorage.getItem("imagem"));
     } else {
       // Isto mostra as últimas 3 imagens geradas
       ultimasImagens = ultimasImagens.concat(
@@ -1370,11 +1556,14 @@ async function GerarPalavra() {
       );
       console.log(ultimasImagens);
 
-      // Isto impede que a imagem gerada seja igual às últimas 3
+      // Isto impede que a imagem gerada seja igual às últimas 3 ou que não seja igual à última que viu
       do {
         imagem = Math.floor(Math.random() * 75) + 1;
         console.info(imagem);
-      } while (ultimasImagens.includes(imagem));
+      } while (
+        ultimasImagens.includes(imagem) ||
+        imagem == sessionStorage.getItem("imagem")
+      );
     }
   } catch (error) {
     console.error("Erro ao buscar as imagens:", error);
@@ -1446,14 +1635,14 @@ async function GerarPalavra() {
       palavra.charAt(palavra.length - 1) == silFim.charAt(0) || // evita letras iguais entre sílabas
       (vogais.includes(palavra.charAt(palavra.length - 1)) &&
         vogaisNasais.includes(silFim.charAt(0))) || // evita uma vogal nasal logo a seguir a uma vogal
-      (consoantes.includes(palavra.charAt(palavra.length - 1)) &&
+      (["h", "j", "m", "x", "z"].includes(palavra.charAt(palavra.length - 1)) &&
         consoantes
           .filter((c) => c !== "r" && c !== "s")
           .includes(silFim.charAt(0))) || // evita consoantes exceto "r" e "s" a seguir a outra consoante
       (consoantes.includes(palavra.charAt(palavra.length - 1)) &&
         silFim.charAt(0) == silFim.charAt(1)) || // evita "rr" e "ss" depois de uma consoante
       (palavra.charAt(palavra.length - 1) == "m" &&
-        ["r", "s", "d"].includes(silFim.charAt(0))) || // evita "r", "s" e "d" depois de um "m"
+        ["r", "s", "d", "t"].includes(silFim.charAt(0))) || // evita "r", "s", "d" e "t" depois de um "m"
       (consoantes.includes(palavra.charAt(palavra.length - 1)) &&
         consoantes.includes(silFim.charAt(0)) &&
         consoantes.includes(silFim.charAt(1))) // evita três consoantes seguidas
@@ -1539,8 +1728,10 @@ async function GerarPalavra() {
           (c) =>
             c !== "h" &&
             c !== "j" &&
+            c !== "l" &&
             c !== "m" &&
             c !== "n" &&
+            c !== "r" &&
             c !== "s" &&
             c !== "x" &&
             c !== "z"
@@ -1570,8 +1761,6 @@ async function GerarPalavra() {
     newPalavra = `${newSilInicio}•${newSilMeio}•${newSilFim}`;
   }
 
-  // INSERIR REGRA DE JUNTAR CONSOANTE COM R OU S
-
   const juntarDitongos = [
     ["a•i", "ai"],
     ["ã•o", "ão"],
@@ -1580,6 +1769,7 @@ async function GerarPalavra() {
     ["e•u", "eu"],
     ["o•i", "oi"],
     ["o•u", "ou"],
+    ["u•i", "ui"],
   ];
   const separarDitongos = [
     ["ae", "a•e"],
@@ -1601,6 +1791,33 @@ async function GerarPalavra() {
   separarDitongos.forEach(([de, para]) => {
     newPalavra = newPalavra.replaceAll(de, para);
   });
+
+  // Separa vogais caso a palavra contenha uma sequência CVVC ou CVVV na mesma sílaba
+  for (let i = 0; i < newPalavra.length - 3; i++) {
+    // CVVC
+    if (
+      !newPalavra.slice(i, i + 4).includes("•") &&
+      consoantes.includes(newPalavra.charAt(i)) &&
+      vogais.includes(newPalavra.charAt(i + 1)) &&
+      vogais.includes(newPalavra.charAt(i + 2)) &&
+      consoantes.includes(newPalavra.charAt(i + 3)) &&
+      newPalavra.slice(i, i + 3) !== "que"
+    ) {
+      console.info("CVVC");
+      newPalavra = `${newPalavra.slice(0, i + 2)}•${newPalavra.slice(i + 2)}`;
+    }
+    // CVVV
+    if (
+      !newPalavra.slice(i, i + 4).includes("•") &&
+      consoantes.includes(newPalavra.charAt(i)) &&
+      vogais.includes(newPalavra.charAt(i + 1)) &&
+      vogais.includes(newPalavra.charAt(i + 2)) &&
+      vogais.includes(newPalavra.charAt(i + 3))
+    ) {
+      console.info("CVVV");
+      newPalavra = `${newPalavra.slice(0, i + 3)}•${newPalavra.slice(i + 3)}`;
+    }
+  }
 
   // Mostra divisão de sílabas
   console.info(newPalavra);
@@ -1659,6 +1876,7 @@ function MostrarPalavra() {
       });
 
     document.getElementById("loading").style.display = "none";
+    document.getElementById("significado").focus();
   };
 }
 
@@ -1672,8 +1890,8 @@ function EnviarSignificado(event) {
     event.preventDefault();
 
     // // Impede que o botão seja clicado durante o processo de envio, para não ficarem palavras repetidas
-    // document.getElementById("submit").disabled = true;
-    // document.getElementById("significado").disabled = true;
+    document.getElementById("submit").disabled = true;
+    document.getElementById("significado").disabled = true;
 
     // Adiciona a imagem gerada ao conjunto das mais recentes, impedindo que este tenha mais de 3 elementos
     ultimasImagens.push(imagem);

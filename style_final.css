@@ -23,42 +23,6 @@ body {
   padding-bottom: 1px;
 }
 
-span#loading {
-  height: 100%;
-  width: 100%;
-  /* top: 0; */
-  position: fixed;
-  display: block;
-  background-color: black;
-  z-index: 5;
-}
-
-span#loading::after {
-  position: fixed;
-  display: block;
-  width: 50px;
-  height: 50px;
-  /* transform: translate(calc(50vw - 25px), calc(50vh - 25px)); */
-  content: "•";
-  font-family: Arial, sans-serif;
-  font-size: 50px;
-  text-align: center;
-  animation-name: loading;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-out;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
-}
-
-@keyframes loading {
-  0% {
-    transform: translate(calc(50vw - 25px), calc(50vh - 25px));
-  }
-  100% {
-    transform: translate(calc(50vw - 25px), calc(50vh - 55px));
-  }
-}
-
 /* =================================================== TÍTULOS ====================================================== */
 h1 {
   pointer-events: none;
@@ -79,7 +43,6 @@ h1.title {
   position: absolute;
   margin: 0 auto;
   margin-top: 100px;
-  /* white-space: nowrap; */
 }
 
 p {
@@ -201,16 +164,41 @@ button:focus {
   button#close {
     top: 45px;
   }
+}
 
-  /* button#submit {
-    width: calc(15% - 130px);
+/* ==================================================== LOADING ===================================================== */
+span#loading {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: block;
+  background-color: black;
+  z-index: 5;
+}
 
-    & img {
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-  } */
+span#loading::after {
+  position: fixed;
+  display: block;
+  width: 50px;
+  height: 50px;
+  content: "•";
+  font-family: Arial, sans-serif;
+  font-size: 50px;
+  text-align: center;
+  animation-name: loading;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes loading {
+  0% {
+    transform: translate(calc(50vw - 25px), calc(50vh - 25px));
+  }
+  100% {
+    transform: translate(calc(50vw - 25px), calc(50vh - 55px));
+  }
 }
 
 /* :::::::::::::::::::::::::::::::::::::::::::::::::: BULLET POINTS ::::::::::::::::::::::::::::::::::::::::::::::::: */
@@ -382,7 +370,6 @@ div#container {
   position: relative;
   flex-wrap: wrap;
   justify-content: center;
-  /* right: calc(35% - 200px); */
   width: calc(65% + 50px);
   text-align: center;
   margin: 0 auto;
