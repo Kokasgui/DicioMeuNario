@@ -2101,10 +2101,11 @@ function LimparServidor() {
   console.log("Servidor limpo!");
 }
 
-// ================================================ INSERÇÃO DE DADOS =================================================
+// ========================================== INSERÇÃO DE DADOS (PARA DEBUG) ==========================================
 // DebugServidor();
+
 function DebugServidor() {
-  // Inserir aqui dados para substituir!
+  // Aqui inserem-se os aqui dados para substituir! Apenas para debug!!
   debugData = [];
 
   fetch("https://diciomeunario-api.onrender.com/debug", {
@@ -2114,7 +2115,7 @@ function DebugServidor() {
       "Content-Type": "application/json", // Specify the content type
     },
     body: JSON.stringify(debugData), // Convert the data to a JSON string
-  }).then((r) => (window.location.href = "arquivo.html"));
+  });
 }
 
 /*
