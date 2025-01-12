@@ -6,6 +6,7 @@ const path = require("path");
 const url = require("url");
 
 data = [];
+debugData = [];
 
 const server = http.createServer((req, res) => {
   const { method, url: reqUrl } = req;
@@ -23,7 +24,26 @@ const server = http.createServer((req, res) => {
   } else if (method === "GET" && parseURL.pathname == "/delete") {
     data = [];
     res.end(JSON.stringify(data));
-  } else if (method === "POST" && parseURL.pathname === "/data") {
+  } else if (method === "POST" && parseURL.pathname == "/debug") {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk.toString();
+    });
+    req.on("end", () => {
+      try {
+        const newData = JSON.parse(body);
+        data = newData;
+        // Isto faz com que o servidor só tenha até 60 dados
+        while (data.length > 30) {
+          data.shift();
+        }
+        res.end(JSON.stringify(newData));
+      } catch (err) {
+        res.statusCode = 400;
+        res.end(JSON.stringify({ error: "Invalid JSON" }));
+      }
+    });
+  } else if (method === "POST" && parseURL.pathname == "/data") {
     let body = "";
     req.on("data", (chunk) => {
       body += chunk.toString();

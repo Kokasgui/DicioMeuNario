@@ -556,8 +556,6 @@ const PALAVRAS_EXISTENTES = [
   "lares",
   "soa",
   "soas",
-  "lapa",
-  "tubo",
   "fibra",
   "fibras",
   "grade",
@@ -1236,7 +1234,6 @@ const PALAVRAS_EXISTENTES = [
   "treme",
   "tremo",
   "fail",
-  "gripe",
   "ralara",
   "ralado",
   "ralada",
@@ -1484,6 +1481,73 @@ const PALAVRAS_EXISTENTES = [
   "clamo",
   "unha",
   "gazela",
+  "tuba",
+  "tubo",
+  "tejo",
+  "sala",
+  "trota",
+  "troto",
+  "trote",
+  "buca",
+  "buco",
+  "here",
+  "mirra",
+  "mirre",
+  "mira",
+  "miro",
+  "mire",
+  "gripe",
+  "gripa",
+  "gripo",
+  "vina",
+  "miau",
+  "bruna",
+  "bruno",
+  "brune",
+  "blusa",
+  "blusita",
+  "blusinha",
+  "ufa",
+  "uva",
+  "moura",
+  "mouro",
+  "mouta",
+  "moutita",
+  "moutinha",
+  "moita",
+  "moito",
+  "moite",
+  "moitinha",
+  "moitita",
+  "cabrinha",
+  "cabrita",
+  "cabrito",
+  "cabrinho",
+  "farinha",
+  "troque",
+  "troce",
+  "somo",
+  "soma",
+  "some",
+  "traque",
+  "trace",
+  "nocivo",
+  "nociva",
+  "lapo",
+  "lapa",
+  "braba",
+  "brabo",
+  "rapela",
+  "rapele",
+  "rapelo",
+  "folha",
+  "folho",
+  "folhe",
+  "paleta",
+  "lago",
+  "laga",
+  "laguinho",
+  "laguinha",
 ];
 
 // ==================================================== VARIÁVEIS =====================================================
@@ -2020,7 +2084,7 @@ function substituirBulletsPorEstilo() {
   document.body.innerHTML = conteudo;
 }
 
-// ========================================= APENAS PARA LIMPEZA DO SERVIDOR ==========================================
+// =============================================== LIMPEZA DO SERVIDOR ================================================
 // LimparServidor();
 
 function LimparServidor() {
@@ -2035,6 +2099,22 @@ function LimparServidor() {
     // body: JSON.stringify(data),
   });
   console.log("Servidor limpo!");
+}
+
+// ================================================ INSERÇÃO DE DADOS =================================================
+// DebugServidor();
+function DebugServidor() {
+  // Inserir aqui dados para substituir!
+  debugData = [];
+
+  fetch("https://diciomeunario-api.onrender.com/debug", {
+    method: "POST", // Specify the request method
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json", // Specify the content type
+    },
+    body: JSON.stringify(debugData), // Convert the data to a JSON string
+  }).then((r) => (window.location.href = "arquivo.html"));
 }
 
 /*
