@@ -1,3 +1,9 @@
+// On main page
+const job = require("./cron.js");
+// Start the cron job
+job.start();
+console.log("Cron job is working");
+
 // ================================================ ARRAYS DE SÍLABAS =================================================
 const SIL_INICIO = [
   "a",
