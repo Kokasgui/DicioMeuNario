@@ -1,13 +1,11 @@
-import { CronJob } from "cron";
-import https from "https";
+const { CronJob } = require("cron");
+const https = require("https");
 
 const backendUrl = "https://diciomeunario-api.onrender.com";
 
-// Definindo o cron job para ser executado a cada 14 minutos
 const job = new CronJob("*/14 * * * *", function () {
   console.log("Attempting cron job");
 
-  // Envia uma requisição GET para manter o backend ativo
   https
     .get(backendUrl, (res) => {
       if (res.statusCode === 200) {
@@ -23,5 +21,4 @@ const job = new CronJob("*/14 * * * *", function () {
     });
 });
 
-// Exportando o cron job como um módulo
-export { job };
+module.exports = { job };

@@ -1,3 +1,5 @@
+const { job } = require("./cron.js"); // Importa o cron job
+
 // Feito pelo Rui, o namorado da Bea Gonçalves amen
 
 const http = require("http");
@@ -7,6 +9,9 @@ const url = require("url");
 
 data = [];
 debugData = [];
+
+// Inicia o cron job
+job.start();
 
 const server = http.createServer((req, res) => {
   const { method, url: reqUrl } = req;
