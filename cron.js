@@ -1,7 +1,7 @@
 const { CronJob } = require("cron");
 const https = require("https");
 
-const backendUrl = "https://diciomeunario-api.onrender.com:3000";
+const backendUrl = "https://diciomeunario-api.onrender.com";
 
 const job = new CronJob("*/14 * * * *", function () {
   console.log("Attempting cron job");
