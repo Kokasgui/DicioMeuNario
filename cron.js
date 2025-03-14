@@ -1,13 +1,13 @@
-// Cron job to hit endpoint every 14 min to keep backend alive always
-const cron = require("cron");
-const https = require("https");
+import { CronJob } from "cron";
+import https from "https";
 
 const backendUrl = "https://diciomeunario-api.onrender.com";
-const job = new cron.CronJob("*/14 * * * *", function () {
-  // This function will be executed every 14 minutes.
+
+// Definindo o cron job para ser executado a cada 14 minutos
+const job = new CronJob("*/14 * * * *", function () {
   console.log("Attempting cron job");
 
-  // Performs an HTTPS GET request to hit any backend API
+  // Envia uma requisição GET para manter o backend ativo
   https
     .get(backendUrl, (res) => {
       if (res.statusCode === 200) {
@@ -23,7 +23,5 @@ const job = new cron.CronJob("*/14 * * * *", function () {
     });
 });
 
-// Export the cron job
-module.exports = {
-  job,
-};
+// Exportando o cron job como um módulo
+export { job };

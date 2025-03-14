@@ -1,6 +1,6 @@
 // On main page
-const job = require("./cron.js");
-// Start the cron job
+import { job } from "./cron.js"; // Usando ES Modules para importar
+// // Start the cron job
 job.start();
 console.log("Cron job is working");
 
