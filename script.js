@@ -1,8 +1,8 @@
-// On main page
-import { job } from "./cron.js"; // Usando ES Modules para importar
-// // Start the cron job
+import { job } from "./cron.js"; // Usando ES Modules para importar o cron job
+
 job.start();
-console.log("Cron job is working");
+
+console.log("Servidor está funcionando e cron job foi iniciado.");
 
 // ================================================ ARRAYS DE SÍLABAS =================================================
 const SIL_INICIO = [
