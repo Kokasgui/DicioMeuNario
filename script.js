@@ -1548,6 +1548,19 @@ const PALAVRAS_EXISTENTES = [
   "laga",
   "laguinho",
   "laguinha",
+  "claro",
+  "clara",
+  "elisão",
+  "pu",
+  "pua",
+  "puada",
+  "pue",
+  "puem",
+  "pui",
+  "puia",
+  "puiam",
+  "puias",
+  "puona",
 ];
 
 // ==================================================== VARIÁVEIS =====================================================
